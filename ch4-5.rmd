@@ -1,0 +1,172 @@
+---
+html_document:
+  code_download: yes
+author: "Brea Koenes"
+date: "10/19/2022"
+output:
+  html_document:
+    df_print: paged
+title: "Stat341 Portfolio"
+---
+
+```{r setup, include=FALSE}
+library(bayesrules)
+library(tidyverse)
+library(ggformula)
+library(dplyr)
+```
+
+# Chapter 4
+
+## 5
+
+Chad peruses the shop’s website. On 3 of the past 7 days, they were still open at 2 p.m.. Complete the following for each of Chad’s coworkers: simulate their posterior model, create a histogram for the simulated posterior, and use the simulation to approximate the posterior mean value of pi.
+
+#### Kimya	Beta(1, 2)
+
+```{r kimya a}
+set.seed(84735)
+kimya_sim <- data.frame(pi = rbeta(10000, 1, 2)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = 3/7))
+```
+
+```{r kimya b}
+kimya_hist <- gf_histogram(~y, data = kimya_sim, geom = "bar")
+```
+
+```{r kimya c}
+set.seed(84735)
+kimya_pi_sim <- data.frame(pi = rbeta(10000, 1, 2)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = pi))
+```
+
+#### Fernando	Beta(0.5, 1)
+
+```{r fernando a}
+set.seed(84735)
+fernando_sim <- data.frame(pi = rbeta(10000, .5, 1)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = 3/7))
+```
+
+```{r fernando b}
+fernando_hist <- gf_histogram(~y, data = fernando_sim, geom = "bar")
+```
+
+```{r fernando c}
+set.seed(84735)
+fernando_pi_sim <- data.frame(pi = rbeta(10000, .5, 1)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = pi))
+```
+
+#### Ciara	Beta(3, 10)
+
+```{r ciara a}
+set.seed(84735)
+ciara_sim <- data.frame(pi = rbeta(10000, 3, 10)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = 3/7))
+```
+
+```{r ciara b}
+ciara_hist <- gf_histogram(~y, data = ciara_sim, geom = "bar")
+```
+
+```{r ciara c}
+set.seed(84735)
+ciara_pi_sim <- data.frame(pi = rbeta(10000, 3, 10)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = pi))
+```
+
+#### Taylor	Beta(2, 0.1)
+
+```{r taylor a}
+set.seed(84735)
+taylor_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = 3/7))
+```
+
+```{r taylor b}
+taylor_hist <- gf_histogram(~y, data = taylor_sim, geom = "bar")
+```
+
+```{r taylor c}
+set.seed(84735)
+taylor_pi_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>% 
+  mutate(y = rbinom(10000, size = 7, prob = pi))
+```
+
+## 14
+a. In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
+
+$$
+Mode(pi∣Y=y) = (\alpha+y−1)/(\alpha+\beta+n−2)   # mode of the posterior
+= (\alpha−1)/(\alpha+\beta+n−2) + y/(\alpha+\beta+n−2)
+= (\alpha−1)/(\alpha+\beta+n−2) ⋅ (\alpha+\beta−2)/(\alpha+\beta−2) + y/(\alpha+\beta+n−2) ⋅ n/n
+= (\alpha+\beta−2)/(\alpha+\beta+n−2) ⋅ (\alpha−1)/(\alpha+\beta−2) + n/(\alpha+\beta+n−2) ⋅ y/n
+= (\alpha+\beta−2) / (\alpha+\beta+n−2) ⋅ Mode(pi) + n/(\alpha+\beta+n−2) ⋅ y/n
+$$
+
+b. To what value does the posterior mode converge as our sample size n increases? Support your answer with evidence. 
+
+{w1, w2,…} consists of a countable (possibly infinite) set of values
+
+lim n->infinity $$Pr(w_t|x_1,...x_n)=1$$, lim n->infinity $$Pr(w_i|x_1,...x_n)=0$$, i!=t
+
+Using the strong law of large numbers and given that there are appropriate regularity conditions, it can be shown that the posterior converges to 1 as n increases.
+
+# Chapter 5
+
+## 10
+
+a. 
+
+```{r}
+bayesrules::summarize_beta(alpha = 2, beta = 7)
+```
+
+b. 
+
+```{r}
+bayesrules::plot_beta(alpha = 2, beta = 7, mean = TRUE, mode = TRUE)
+```
+
+c. 
+
+```{r}
+summarize_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
+```
+
+d.
+
+```{r}
+pnorm(0, mean=7,sd=2, log.p=FALSE)
+```
+
+e. 
+
+```{r}
+pnorm(8, mean=7,sd=2, log.p=FALSE)
+```
+
+## 11 
+
+a.
+
+```{r}
+summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 86, n = 32)
+```
+
+b.
+
+```{r}
+summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 82, n = 32)
+```
+
+## 13
+
+```{r}
+bayesrules::plot_beta(alpha = 5, beta = 30, mean = TRUE, mode = TRUE)
+```
+
+```{r}
+summarize_normal_normal(mean = 30, sd = 5, sigma = 3, y_bar = 40, n = 1000)
+```

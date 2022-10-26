@@ -1,0 +1,319 @@
+---
+title: "ch6-7.rmd"
+author: "Brea Koenes"
+date: "10/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load packages
+library(bayesrules)
+library(tidyverse)
+library(ggformula)
+library(dplyr)
+```
+
+# Chapter 6
+
+## 5
+
+```{r}
+# Define grid
+grid_data <- data.frame(pi_grid = seq(from = 0, to = 1, length = 201))
+```
+
+```{r}
+# Evaluate the prior & likelihood at each pi
+grid_data <- grid_data %>% 
+  mutate(prior = dbeta(pi_grid, 3, 8),
+         likelihood = dbinom(2, 10, pi_grid))
+```
+
+```{r}
+# Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         posterior = unnormalized / sum(unnormalized))
+
+# Confirm that the posterior approximation sums to 1
+grid_data %>% 
+  summarize(sum(unnormalized), sum(posterior))
+```
+
+```{r}
+post_sample <- grid_data |> slice_sample(n=10000, weight_by=posterior, replace=TRUE)
+```
+
+```{r}
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+```
+
+## 6
+
+```{r}
+# Step 1: Define a grid of 501 lambda values
+grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 9))
+
+# Step 2: Evaluate the prior & likelihood at each lambda
+grid_data <- grid_data %>% 
+  mutate(prior = dgamma(lambda_grid, 20, 5),
+         likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
+
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         posterior = unnormalized / sum(unnormalized))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+# Histogram of the grid simulation with posterior pdf 
+ggplot(post_sample, aes(x = lambda_grid)) + 
+  geom_histogram(aes(y = ..density..), color = "white") + 
+  stat_function(fun = dgamma, args = list(20, 5)) + 
+  lims(x = c(0, 8))
+```
+
+```{r}
+# Step 1: Define a grid of 501 lambda values
+grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 201))
+
+# Step 2: Evaluate the prior & likelihood at each lambda
+grid_data <- grid_data %>% 
+  mutate(prior = dgamma(lambda_grid, 20, 5),
+         likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
+
+# Step 3: Approximate the posterior
+grid_data <- grid_data %>% 
+  mutate(unnormalized = likelihood * prior,
+         posterior = unnormalized / sum(unnormalized))
+
+# Set the seed
+set.seed(84735)
+
+# Step 4: sample from the discretized posterior
+post_sample <- sample_n(grid_data, size = 10000, 
+                        weight = posterior, replace = TRUE)
+
+# Histogram of the grid simulation with posterior pdf 
+ggplot(post_sample, aes(x = lambda_grid)) + 
+  geom_histogram(aes(y = ..density..), color = "white") + 
+  stat_function(fun = dgamma, args = list(20, 5)) + 
+  lims(x = c(0, 8))
+```
+
+## modified 7
+
+```{r}
+library(ggformula)
+
+gf_dist('gamma', shape = 2, rate = 2)
+```
+
+```{r}
+# define grid
+grid <- expand.grid(
+  mu = seq(4, 16, by=4), 
+  sigma = seq(1, 4, by=1))
+```
+
+## 13
+
+```{r}
+# STEP 1: DEFINE the model
+bb_model <- "
+  data {
+    int<lower = 0, upper = 10> Y;
+  }
+  parameters {
+    real<lower = 0, upper = 1> pi;
+  }
+  model {
+    Y ~ binomial(10, pi);
+    pi ~ beta(2, 2);
+  }
+"
+```
+
+```{r}
+# STEP 2: SIMULATE the posterior
+bb_sim <- stan(model_code = bb_model, data = list(Y = 9), 
+               chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+mcmc_trace(bb_sim, pars = "pi", size = 0.1)
+```
+
+```{r}
+# Histogram of the Markov chain values
+mcmc_hist(bb_sim, pars = "pi") + 
+  yaxis_text(TRUE) + 
+  ylab("count")
+
+# Density plot of the Markov chain values
+mcmc_dens(bb_sim, pars = "pi") + 
+  yaxis_text(TRUE) + 
+  ylab("density")
+```
+
+## 16
+
+```{r}
+# STEP 1: DEFINE the model
+gp_model <- "
+  data {
+    int<lower = 0> Y[2];
+  }
+  parameters {
+    real<lower = 0> lambda;
+  }
+  model {
+    Y ~ poisson(lambda);
+    lambda ~ gamma(3, 1);
+  }
+"
+
+# STEP 2: SIMULATE the posterior
+gp_sim <- stan(model_code = gp_model, data = list(Y = c(2,8)), 
+               chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+# Trace plots of the 4 Markov chains
+mcmc_trace(gp_sim, pars = "lambda", size = 0.1)
+
+# Histogram of the Markov chain values
+mcmc_hist(gp_sim, pars = "lambda") + 
+  yaxis_text(TRUE) + 
+  ylab("count")
+
+# Density plot of the Markov chain values
+mcmc_dens(gp_sim, pars = "lambda") + 
+  yaxis_text(TRUE) + 
+  ylab("density")
+```
+
+## modified 17
+
+```{r}
+
+```
+
+# Chapter 7
+
+## 6
+
+Propose a new location.
+
+```{r}
+current <- 3
+
+set.seed(84735)
+
+proposal <- runif(1, min = current - 1, max = current + 1)
+proposal
+```
+
+## 7
+
+```{r}
+
+```
+
+## 8
+
+```{r}
+
+```
+
+## 10
+
+```{r}
+
+```
+
+## 12
+
+```{r}
+
+```
+
+## 14
+
+```{r}
+
+```
+
+## 15 
+
+prior: proportion of emails I receive 24 hours: 19/24
+
+# one iteration function
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
+
+# do whole thing
+
+```{r}
+mh_tour <- function(N, w){
+  # start the chain at 19 emails
+  current <- 19
+
+  # initialize the simulation
+  mu <- rep(0, N)
+
+  # simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # record next email
+    mu[i] <- sim$next_stop
+    
+    # reset the current email
+    current <- sim$next_stop
+  }
+  
+  # return the chain emails
+  return(data.frame(iteration = c(1:N), mu))
+}
+
+#  simulate a Markov chain tour of length 2000
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 2000, w = pi)
+
+# plot
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+
+ggplot(mh_simulation_1, aes(x = mu)) + 
+  geom_histogram(aes(y = ..density..), color = "white", bins = 20) + 
+  stat_function(fun = dnorm, args = list(4,0.6), color = "blue")
+```
+
+The trace plot (left) illustrates the email or sequence of emails stops. The histogram (right) illustrates the relative amount of emails per day.

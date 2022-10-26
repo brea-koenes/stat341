@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+# Load packages
+library(bayesrules)
+library(tidyverse)
+library(ggformula)
+library(dplyr)
+```
+
+# Chapter 9
+
+## 9
+
+## 10
+
+## 11
+
+## 12
+
+## 13
+
+## 16
+
+## 17
+
+## 18
+
+## 19
