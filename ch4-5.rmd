@@ -20,8 +20,6 @@ library(dplyr)
 
 ## 5
 
-Chad peruses the shop’s website. On 3 of the past 7 days, they were still open at 2 p.m.. Complete the following for each of Chad’s coworkers: simulate their posterior model, create a histogram for the simulated posterior, and use the simulation to approximate the posterior mean value of pi.
-
 #### Kimya	Beta(1, 2)
 
 ```{r kimya a}
@@ -95,6 +93,7 @@ taylor_pi_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>%
 ```
 
 ## 14
+
 a. In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
 
 $$
@@ -120,16 +119,25 @@ Using the strong law of large numbers and given that there are appropriate regul
 a. 
 
 ```{r}
-bayesrules::summarize_beta(alpha = 2, beta = 7)
+data <- c(-0.7,1.2,4.5,-4)
+plot_normal_likelihood(y = data, sigma = 4)
 ```
 
-b. 
+b.
 
 ```{r}
 bayesrules::plot_beta(alpha = 2, beta = 7, mean = TRUE, mode = TRUE)
 ```
 
+```{r}
+plot_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
+```
+
 c. 
+
+```{r}
+bayesrules::summarize_beta(alpha = 2, beta = 7)
+```
 
 ```{r}
 summarize_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
@@ -137,11 +145,15 @@ summarize_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
 
 d.
 
+My understanding of the mean evolved from the prior by the posterior's mean being below .25 while the mean of the prior was .25. 
+
+e. 
+
 ```{r}
 pnorm(0, mean=7,sd=2, log.p=FALSE)
 ```
 
-e. 
+f.
 
 ```{r}
 pnorm(8, mean=7,sd=2, log.p=FALSE)
@@ -161,12 +173,44 @@ b.
 summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 82, n = 32)
 ```
 
+c. 
+
+```{r}
+summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 84, n = 32)
+```
+
 ## 13
+
+a. 
+
+```{r}
+plot_normal(mean = 30, sd = 5)
+```
 
 ```{r}
 bayesrules::plot_beta(alpha = 5, beta = 30, mean = TRUE, mode = TRUE)
 ```
 
+b.
+
+```{r}
+ggplot(weather_perth, aes(x = temp3pm)) + 
+  geom_density()
+```
+
+It is reasonable to assume a Normal model for the temperature data due to the patterns observed in the density plot.
+
+c.
+
 ```{r}
 summarize_normal_normal(mean = 30, sd = 5, sigma = 3, y_bar = 40, n = 1000)
 ```
+
+d. 
+
+```{r}
+plot_normal_normal(mean = 30, sd = 5, sigma = 3,
+                   y_bar = 40, n = 1000)
+```
+
+I expected the posterior mean to be higher than the prior, but I did not expect it to be that much higher. Also, did anticipate the sd and variance being much lower for the posterior compared to the prior.
