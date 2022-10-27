@@ -15,9 +15,9 @@ library(dplyr)
 
 # Chapter 6
 
-## 5
+## 6.5
 
-a.
+a.  
 
 ```{r}
 # Define grid
@@ -40,7 +40,7 @@ post_sample <- sample_n(grid_data, size = 10000,
                         weight = posterior, replace = TRUE)
 ```
 
-b.
+b.  
 
 ```{r}
 # Define grid
@@ -63,9 +63,9 @@ post_sample <- sample_n(grid_data, size = 10000,
                         weight = posterior, replace = TRUE)
 ```
 
-## 6
+## 6.6
 
-a.
+a.  
 
 ```{r}
 # Define grid
@@ -94,7 +94,7 @@ ggplot(post_sample, aes(x = lambda_grid)) +
   lims(x = c(0, 8))
 ```
 
-b.
+b.  
 
 ```{r}
 # Define grid 
@@ -123,7 +123,7 @@ ggplot(post_sample, aes(x = lambda_grid)) +
   lims(x = c(0, 8))
 ```
 
-## modified 7
+## modified 6.7
 
 ```{r}
 library(ggformula)
@@ -140,9 +140,9 @@ grid <- expand.grid(
 # to be continued...
 ```
 
-## 13
+## 6.13
 
-a.
+a.  
 
 ```{r}
 # Define model
@@ -167,18 +167,18 @@ bb_sim <- stan(model_code = bb_model, data = list(Y = 2),
                chains = 3, iter = 12000, seed = 84735)
 ```
 
-b.
+b.  
 
 ```{r}
 require(bayesplot)
 mcmc_trace(bb_sim, pars = "pi", size = 0.1)
 ```
 
-c. 
+c.  
 
-The range is 0 to 6000. The end of the range is not 12000, but rather 6000 calculated by 6000*2. 
+The range is 0 to 6000. The end of the range is not 12000, but rather 6000 calculated by 6000\*2.
 
-d. 
+d.  
 
 ```{r}
 # Density plot of the Markov chain values
@@ -187,7 +187,7 @@ mcmc_dens(bb_sim, pars = "pi") +
   ylab("density")
 ```
 
-e. 
+e.  
 
 ```{r}
 bayesrules::summarize_beta(alpha = 3, beta = 8)
@@ -197,11 +197,11 @@ bayesrules::summarize_beta(alpha = 3, beta = 8)
 summarize_normal_normal(mean = 8, sd = .13, sigma = pi, y_bar = 8.27, n = 10)
 ```
 
-My MCMC approximation is very similar to the results from the posterior model of pi. They have a similar mode. 
+My MCMC approximation is very similar to the results from the posterior model of pi. They have a similar mode.
 
-## 16
+## 6.16
 
-a. 
+a.  
 
 ```{r}
 # Define model
@@ -223,7 +223,7 @@ gp_sim <- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
                chains = 4, iter = 10000, seed = 84735)
 ```
 
-b.
+b.  
 
 ```{r}
 # Trace plots of the 4 Markov chains
@@ -235,19 +235,19 @@ mcmc_dens(gp_sim, pars = "lambda") +
   ylab("density")
 ```
 
-c.
+c.  
 
 The most plausible posterior appears to be about 0.65.
 
-d. 
+d.  
 
 ```{r}
 summarize_gamma_poisson(shape = 5, rate = 5, sum_y = 1, n = 3)
 ```
 
-My MCMC approximation is closer to the prior than approximating using a posterior model. 
+My MCMC approximation is closer to the prior than approximating using a posterior model.
 
-## modified 17
+## modified 6.17
 
 ```{r}
 data <- c(7.1,8.9,8.4,8.6)
@@ -261,7 +261,7 @@ to be continued...
 
 ## 6
 
-a.
+a.  
 
 ```{r}
 current <- 4.6
@@ -272,7 +272,7 @@ proposal <- runif(1, min = current - 2, max = current + 2)
 proposal
 ```
 
-b.
+b.  
 
 ```{r}
 current <- 2.1
@@ -283,7 +283,7 @@ proposal <- runif(1, min = current - 7, max = current + 7)
 proposal
 ```
 
-c. 
+c.  
 
 ```{r}
 current <- 8.9
@@ -294,7 +294,7 @@ proposal <- runif(1, min = current - 2, max = current + 2)
 proposal
 ```
 
-d. 
+d.  
 
 ```{r}
 current <- 1.2
@@ -305,7 +305,7 @@ proposal <- runif(1, min = current - 0.5, max = current + 0.5)
 proposal
 ```
 
-e.
+e.  
 
 ```{r}
 current <- 7.7
@@ -316,33 +316,33 @@ proposal <- runif(1, min = current - 3, max = current + 3)
 proposal
 ```
 
-## 7
+## 7.7
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
-e.
+e.  
 
 ## 8
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
-e.
+e.  
 
-## 10
+## 7.10
 
-a.
+a.  
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -396,7 +396,7 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
   geom_line()
 ```
 
-b.
+b.  
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -450,7 +450,7 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
   geom_line()
 ```
 
-c.
+c.  
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -504,7 +504,7 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
   geom_line()
 ```
 
-d.
+d.  
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -558,39 +558,39 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
   geom_line()
 ```
 
-e.
+e.  
 
 "w" is the the Uniform half-width. Due to this, it makes sense that a w value will result in a more detailed plot. A larger w will result in a chunkier plot with less detail across iterations. This can be seen in comparing a and b. a, with a larger w, is has a chunky, stark line. b has much more detail and variation across the line, as it has a smaller w.
 
-f.
+f.  
 
-Having a low w is important in scenarios with more iterations. As seen in c and d, plot d has much more detail and gives us more information about the variation between iterations than c does—it has a low w. 
+Having a low w is important in scenarios with more iterations. As seen in c and d, plot d has much more detail and gives us more information about the variation between iterations than c does---it has a low w.
 
-## 12
+## 7.12
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
-e.
+e.  
 
-f.
+f.  
 
-## 14
+## 7.14
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
-## 15 
+## 7.15
 
 prior: proportion of emails I receive 24 hours: 19/24
 
