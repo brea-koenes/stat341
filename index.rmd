@@ -5,6 +5,7 @@ date: "10/27/2022"
 output: html_document
 ---
 
-* [ch4](ch4-5.html)
-
+* [ch4-5](ch4-5.html)
+* [ch6-7](ch6-7.html)
+* [ch8](ch8.html)
 
