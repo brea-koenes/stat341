@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -15,18 +17,191 @@ library(dplyr)
 
 ## 9
 
+a.
+
+```{r}
+summarize_normal_normal(mean = 1000, sd = 2000, sigma = 10,
+                        y_bar = 9000, n = 10000)
+```
+
+b.
+
+```{r}
+require(rstanarm)
+
+model <- stan_glm(
+  rides ~ humidity, data = bikes, 
+  family = gaussian,
+  prior_PD = TRUE,
+  prior_intercept = normal(1000, 2000, autoscale = TRUE),
+  prior = normal(0, 10, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 5, iter = 8000, seed = 84735)
+```
+
+c.
+
+```{r}
+require(bayesplot)
+
+# Trace plots of parallel chains
+mcmc_trace(model, size = 100)
+
+# Density plots of parallel chains
+mcmc_dens_overlay(model)
+```
+
+d.
+
+Ridership decreases as humidity increases. There is much variability with the ridership per day, so that impacts the strength of the relationship.
+
 ## 10
+
+a.
+
+```{r}
+# Load and plot data
+data(bikes)
+ggplot(bikes, aes(x = humidity, y = rides)) + 
+  geom_point(size = 0.5) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+b.
+
+The data is semi-normally distributed. It's not evenly distributed across the x-axis, but the points are evenly distributed across the y-axis. Since it doesn't form a trumpet-like shape, it could be fine for Normal regression. 
 
 ## 11
 
+a.
+
+b.
+
+c.
+
 ## 12
+
+a.
+
+b.
+
+c.
+
+d.
 
 ## 13
 
+a.
+
+b.
+
+c.
+
+d.
+
 ## 16
 
+a.
+
+b.
+
+c.
+
+d.
+
 ## 17
+
+a.
+
+b.
+
+## 18
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
+## 19
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
+# Chapter 10
+
+## 7 
+
+a.
+
+b.
+
+## 13
+
+a.
+
+b.
+
+## 14
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
+## 15
+
+a.
+
+b.
+
+c.
+
+d.
+
+## 16
+
+a.
+
+b.
+
+c.
+
+d.
+
+## 17
+
+a.
+
+b.
+
+c.
 
 ## 18
 
 ## 19
+
+a.
+
+b.
+
+c.
+
+d.
+
