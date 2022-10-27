@@ -97,11 +97,15 @@ taylor_pi_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>%
 a. In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
 
 $$
-Mode(pi∣Y=y) = (\alpha+y−1)/(\alpha+\beta+n−2)   # mode of the posterior
-= (\alpha−1)/(\alpha+\beta+n−2) + y/(\alpha+\beta+n−2)
-= (\alpha−1)/(\alpha+\beta+n−2) ⋅ (\alpha+\beta−2)/(\alpha+\beta−2) + y/(\alpha+\beta+n−2) ⋅ n/n
-= (\alpha+\beta−2)/(\alpha+\beta+n−2) ⋅ (\alpha−1)/(\alpha+\beta−2) + n/(\alpha+\beta+n−2) ⋅ y/n
-= (\alpha+\beta−2) / (\alpha+\beta+n−2) ⋅ Mode(pi) + n/(\alpha+\beta+n−2) ⋅ y/n
+\begin{align*}
+
+Mode(\pi∣Y=y) &= (\alpha+y−1)/(\alpha+\beta+n−2) \\
+&= \frac{\alpha−1}{\alpha+\beta+n−2} + y/(\alpha+\beta+n−2) \\
+&= (\alpha−1)/(\alpha+\beta+n−2) ⋅ (\alpha+\beta−2)/(\alpha+\beta−2) + y/(\alpha+\beta+n−2) ⋅ n/n \\
+&= (\alpha+\beta−2)/(\alpha+\beta+n−2) ⋅ (\alpha−1)/(\alpha+\beta−2) + n/(\alpha+\beta+n−2) ⋅ y/n \\
+&= (\alpha+\beta−2) / (\alpha+\beta+n−2) ⋅ Mode(\pi) + n/(\alpha+\beta+n−2) ⋅ y/n \\
+
+\end{align*}
 $$
 
 b. To what value does the posterior mode converge as our sample size n increases? Support your answer with evidence. 
