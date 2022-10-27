@@ -15,7 +15,7 @@ library(dplyr)
 
 # Chapter 9
 
-## 9
+## 9.9
 
 a.
 
@@ -55,7 +55,7 @@ d.
 
 Ridership decreases as humidity increases. There is much variability with the ridership per day, so that impacts the strength of the relationship.
 
-## 10
+## 9.10
 
 a.
 
@@ -71,7 +71,7 @@ b.
 
 The data is normally distributed enough; the points are fairly evenly distributed across the y-axis. Since it doesn't form a trumpet-like shape, it could be fine for Normal regression. 
 
-## 11
+## 9.11
 
 a.
 
@@ -79,17 +79,7 @@ b.
 
 c.
 
-## 12
-
-a.
-
-b.
-
-c.
-
-d.
-
-## 13
+## 9.12
 
 a.
 
@@ -99,7 +89,7 @@ c.
 
 d.
 
-## 16
+## 9.13
 
 a.
 
@@ -109,13 +99,23 @@ c.
 
 d.
 
-## 17
+## 9.16
 
 a.
 
 b.
 
-## 18
+c.
+
+d.
+
+## 9.17
+
+a.
+
+b.
+
+## 9.18
 
 a.
 
@@ -127,7 +127,7 @@ d.
 
 e.
 
-## 19
+## 9.19
 
 a.
 
@@ -141,7 +141,7 @@ e.
 
 # Chapter 10
 
-## 7 
+## 10.7 
 
 a. 
 
@@ -179,13 +179,13 @@ problem7_data |>
         )
 ```
 
-## 13
+## 10.13
 
 a.
 
 b.
 
-## 14
+## 10.14
 
 a.
 
@@ -197,7 +197,7 @@ d.
 
 e.
 
-## 15
+## 10.15
 
 a.
 
@@ -207,7 +207,7 @@ c.
 
 d.
 
-## 16
+## 10.16
 
 a.
 
@@ -217,7 +217,7 @@ c.
 
 d.
 
-## 17
+## 10.17
 
 a.
 
@@ -225,9 +225,9 @@ b.
 
 c.
 
-## 18
+## 10.18
 
-## 19
+## 10.19
 
 a.
 

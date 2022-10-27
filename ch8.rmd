@@ -15,7 +15,7 @@ library(dplyr)
 
 # Chapter 8
 
-## 13
+## 8.13
 
 a.
 
@@ -25,7 +25,7 @@ c.
 
 d.
 
-## 14
+## 8.14
 
 a.
 
@@ -53,7 +53,7 @@ summarize_beta_binomial(alpha = 1, beta = 2, y = 150, n = 1000)
 qbeta(c(0.25, 0.975), 151, 852)
 ```
 
-## 15
+## 8.15
 
 a.
 
@@ -63,7 +63,7 @@ c.
 
 d.
 
-## 16
+## 8.16
 
 a.
 
@@ -113,7 +113,7 @@ neff_ratio(art_sim, pars = "pi")
 
 R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample. 
 
-## 17
+## 8.17
 
 a.
 
@@ -121,7 +121,7 @@ b.
 
 c.
 
-## 18
+## 8.18
 
 a.
 
@@ -129,17 +129,7 @@ b.
 
 c.
 
-## 21
-
-a.
-
-b.
-
-c.
-
-d.
-
-## 22
+## 8.21
 
 a.
 
@@ -149,7 +139,17 @@ c.
 
 d.
 
-## 23
+## 8.22
+
+a.
+
+b.
+
+c.
+
+d.
+
+## 8.23
 
 a.
 
@@ -161,10 +161,13 @@ d.
 
 e.
 
-## 24
+## 8.24
 
 a.
 
 b.
 
 c.
+
+
+
