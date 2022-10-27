@@ -17,61 +17,154 @@ library(dplyr)
 
 ## 13
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
 
 ## 14
 
-```{r}
+a.
 
+Beta-Binomial is the correct choice in model because the prior is binomial. Specifically, the subject either believes in climate change or does not. 
+
+b. and c.
+
+My prior would be Beta(1,2). It is the same as the authors.
+
+d.
+
+```{r}
+summary(pulse_of_the_nation)
+```
+
+150/1000= 15% don't believe it's real at all
+
+e.
+
+```{r}
+summarize_beta_binomial(alpha = 1, beta = 2, y = 150, n = 1000)
+```
+
+```{r}
+qbeta(c(0.25, 0.975), 151, 852)
 ```
 
 ## 15
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
 
 ## 16
 
-```{r}
+a.
 
+```{r}
+require(rstan)
+
+# STEP 1: DEFINE the model
+art_model <- "
+  data {
+    int<lower = 0, upper = 1000> Y;
+  }
+  parameters {
+    real<lower = 0, upper = 1> pi;
+  }
+  model {
+    Y ~ binomial(150, pi);
+    pi ~ beta(151, 852);
+  }
+"
+
+# STEP 2: SIMULATE the posterior
+art_sim <- stan(model_code = art_model, data = list(Y = 150), 
+                chains = 4, iter = 5000*2, seed = 84735)
 ```
+
+b.
+
+```{r}
+require(bayesplot)
+
+# Parallel trace plots & density plots
+mcmc_trace(art_sim, pars = "pi", size = 0.5) + 
+  xlab("iteration")
+mcmc_dens_overlay(art_sim, pars = "pi")
+
+# Autocorrelation plot
+mcmc_acf(art_sim, pars = "pi")
+```
+
+c.
+
+```{r}
+rhat(art_sim, pars = "pi")
+
+neff_ratio(art_sim, pars = "pi")
+```
+
+R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample. 
 
 ## 17
 
-```{r}
+a.
 
-```
+b.
+
+c.
 
 ## 18
 
-```{r}
+a.
 
-```
+b.
+
+c.
 
 ## 21
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
 
 ## 22
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
 
 ## 23
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
+
+e.
 
 ## 24
 
-```{r}
+a.
 
-```
+b.
 
+c.

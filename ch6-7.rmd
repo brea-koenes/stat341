@@ -250,59 +250,99 @@ My MCMC approximation is closer to the prior than approximating using a posterio
 ## modified 17
 
 ```{r}
+data <- c(7.1,8.9,8.4,8.6)
 
+plot_normal_likelihood(y = data, sigma = 0.5)
 ```
+
+to be continued...
 
 # Chapter 7
 
 ## 6
 
-Propose a new location.
+a.
 
 ```{r}
-current <- 3
+current <- 4.6
 
 set.seed(84735)
 
-proposal <- runif(1, min = current - 1, max = current + 1)
+proposal <- runif(1, min = current - 2, max = current + 2)
+proposal
+```
+
+b.
+
+```{r}
+current <- 2.1
+
+set.seed(84735)
+
+proposal <- runif(1, min = current - 7, max = current + 7)
+proposal
+```
+
+c. 
+
+```{r}
+current <- 8.9
+
+set.seed(84735)
+
+proposal <- runif(1, min = current - 2, max = current + 2)
+proposal
+```
+
+d. 
+
+```{r}
+current <- 1.2
+
+set.seed(84735)
+
+proposal <- runif(1, min = current - 0.5, max = current + 0.5)
+proposal
+```
+
+e.
+
+```{r}
+current <- 7.7
+
+set.seed(84735)
+
+proposal <- runif(1, min = current - 3, max = current + 3)
 proposal
 ```
 
 ## 7
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
+
+e.
 
 ## 8
 
-```{r}
+a.
 
-```
+b.
+
+c.
+
+d.
+
+e.
 
 ## 10
 
-```{r}
-
-```
-
-## 12
-
-```{r}
-
-```
-
-## 14
-
-```{r}
-
-```
-
-## 15 
-
-prior: proportion of emails I receive 24 hours: 19/24
-
-# one iteration function
+a.
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -321,7 +361,255 @@ one_mh_iteration <- function(w, current){
 }
 ```
 
-# do whole thing
+```{r}
+mh_tour <- function(N, w){
+  # 1. Start the chain at location 3
+  current <- 3
+
+  # 2. Initialize the simulation
+  mu <- rep(0, N)
+
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # Record next location
+    mu[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+```
+
+```{r}
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 50, w = 50)
+```
+
+```{r}
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+```
+
+b.
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
+
+```{r}
+mh_tour <- function(N, w){
+  # 1. Start the chain at location 3
+  current <- 3
+
+  # 2. Initialize the simulation
+  mu <- rep(0, N)
+
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # Record next location
+    mu[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+```
+
+```{r}
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 50, w = 0.1)
+```
+
+```{r}
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+```
+
+c.
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
+
+```{r}
+mh_tour <- function(N, w){
+  # 1. Start the chain at location 3
+  current <- 3
+
+  # 2. Initialize the simulation
+  mu <- rep(0, N)
+
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # Record next location
+    mu[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+```
+
+```{r}
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 1000, w = 50)
+```
+
+```{r}
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+```
+
+d.
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
+
+```{r}
+mh_tour <- function(N, w){
+  # 1. Start the chain at location 3
+  current <- 3
+
+  # 2. Initialize the simulation
+  mu <- rep(0, N)
+
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # Record next location
+    mu[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+```
+
+```{r}
+set.seed(84735)
+mh_simulation_1 <- mh_tour(N = 1000, w = 0.1)
+```
+
+```{r}
+ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+  geom_line()
+```
+
+e.
+
+"w" is the the Uniform half-width. Due to this, it makes sense that a w value will result in a more detailed plot. A larger w will result in a chunkier plot with less detail across iterations. This can be seen in comparing a and b. a, with a larger w, is has a chunky, stark line. b has much more detail and variation across the line, as it has a smaller w.
+
+f.
+
+Having a low w is important in scenarios with more iterations. As seen in c and d, plot d has much more detail and gives us more information about the variation between iterations than c does—it has a low w. 
+
+## 12
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
+f.
+
+## 14
+
+a.
+
+b.
+
+c.
+
+d.
+
+## 15 
+
+prior: proportion of emails I receive 24 hours: 19/24
+
+```{r}
+one_mh_iteration <- function(w, current){
+ # STEP 1: Propose the next chain location
+ proposal <- runif(1, min = current - w, max = current + w)
+  
+ # STEP 2: Decide whether or not to go there
+ proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
+ current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
+ alpha <- min(1, proposal_plaus / current_plaus)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ # Return the results
+ return(data.frame(proposal, alpha, next_stop))
+}
+```
 
 ```{r}
 mh_tour <- function(N, w){

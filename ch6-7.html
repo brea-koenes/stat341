@@ -522,8 +522,8 @@ bb_model &lt;- &quot;
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 8e-06 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+## Chain 1: Gradient evaluation took 7e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -540,15 +540,15 @@ bb_model &lt;- &quot;
 ## Chain 1: Iteration: 10800 / 12000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 11.0494 seconds (Warm-up)
-## Chain 1:                10.9528 seconds (Sampling)
-## Chain 1:                22.0022 seconds (Total)
+## Chain 1:  Elapsed Time: 10.982 seconds (Warm-up)
+## Chain 1:                10.9074 seconds (Sampling)
+## Chain 1:                21.8893 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 3e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+## Chain 2: Gradient evaluation took 4e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -565,15 +565,15 @@ bb_model &lt;- &quot;
 ## Chain 2: Iteration: 10800 / 12000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 10.537 seconds (Warm-up)
-## Chain 2:                11.4243 seconds (Sampling)
-## Chain 2:                21.9613 seconds (Total)
+## Chain 2:  Elapsed Time: 10.3767 seconds (Warm-up)
+## Chain 2:                11.3167 seconds (Sampling)
+## Chain 2:                21.6934 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 4e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 3: Gradient evaluation took 5e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -590,9 +590,9 @@ bb_model &lt;- &quot;
 ## Chain 3: Iteration: 10800 / 12000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 10.6375 seconds (Warm-up)
-## Chain 3:                10.5591 seconds (Sampling)
-## Chain 3:                21.1965 seconds (Total)
+## Chain 3:  Elapsed Time: 10.3916 seconds (Warm-up)
+## Chain 3:                10.375 seconds (Sampling)
+## Chain 3:                20.7667 seconds (Total)
 ## Chain 3:</code></pre>
 <pre><code>## Warning: There were 18000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -660,8 +660,8 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 1e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
+## Chain 1: Gradient evaluation took 1.1e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -678,15 +678,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.37009 seconds (Warm-up)
-## Chain 1:                8.20861 seconds (Sampling)
-## Chain 1:                16.5787 seconds (Total)
+## Chain 1:  Elapsed Time: 8.12907 seconds (Warm-up)
+## Chain 1:                8.21373 seconds (Sampling)
+## Chain 1:                16.3428 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 3e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -703,9 +703,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.90303 seconds (Warm-up)
-## Chain 2:                8.50487 seconds (Sampling)
-## Chain 2:                16.4079 seconds (Total)
+## Chain 2:  Elapsed Time: 7.90927 seconds (Warm-up)
+## Chain 2:                8.41707 seconds (Sampling)
+## Chain 2:                16.3263 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 3).
@@ -728,9 +728,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 7.86001 seconds (Warm-up)
-## Chain 3:                7.87997 seconds (Sampling)
-## Chain 3:                15.74 seconds (Total)
+## Chain 3:  Elapsed Time: 7.89872 seconds (Warm-up)
+## Chain 3:                7.94747 seconds (Sampling)
+## Chain 3:                15.8462 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 4).
@@ -753,9 +753,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 7.84509 seconds (Warm-up)
-## Chain 4:                8.78513 seconds (Sampling)
-## Chain 4:                16.6302 seconds (Total)
+## Chain 4:  Elapsed Time: 7.85579 seconds (Warm-up)
+## Chain 4:                9.01419 seconds (Sampling)
+## Chain 4:                16.87 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
