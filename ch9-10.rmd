@@ -69,7 +69,7 @@ ggplot(bikes, aes(x = humidity, y = rides)) +
 
 b.
 
-The data is semi-normally distributed. It's not evenly distributed across the x-axis, but the points are evenly distributed across the y-axis. Since it doesn't form a trumpet-like shape, it could be fine for Normal regression. 
+The data is normally distributed enough; the points are fairly evenly distributed across the y-axis. Since it doesn't form a trumpet-like shape, it could be fine for Normal regression. 
 
 ## 11
 
@@ -143,9 +143,41 @@ e.
 
 ## 7 
 
-a.
+a. 
+
+```{r problem7}
+problem7_data <- 
+  tibble(
+    x = c(12,10,4,8,6), 
+    y = c(20,17,4,11,9)
+  )
+```
+
+$$
+
+y=mx+b \\
+
+y= \beta_1x+\beta_0 \\
+
+y= \beta_0 + \beta_1x \\
+
+\hat{y}_i= \beta_0 + \beta_1 x_i \\
+
+\hat{y}_1= -1.8 + 2.1 \cdot 12 \\
+
+\hat{y}_2= -1.8 + 2.1 \cdot 10 \\
+
+$$
 
 b.
+
+```{r problem7b}
+problem7_data |>
+  mutate(y_hat=-1.8+2.1*x, 
+         y_model=-1.8+2.1*x+rnorm(5,0,0.8),
+         y_model2=rnorm(5,-1.8+2.1*x,0.8)
+        )
+```
 
 ## 13
 

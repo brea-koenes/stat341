@@ -18,9 +18,9 @@ library(dplyr)
 
 # Chapter 4
 
-## 5
+## 4.5
 
-#### Kimya	Beta(1, 2)
+#### Kimya Beta(1, 2)
 
 ```{r kimya a}
 set.seed(84735)
@@ -38,7 +38,7 @@ kimya_pi_sim <- data.frame(pi = rbeta(10000, 1, 2)) %>%
   mutate(y = rbinom(10000, size = 7, prob = pi))
 ```
 
-#### Fernando	Beta(0.5, 1)
+#### Fernando Beta(0.5, 1)
 
 ```{r fernando a}
 set.seed(84735)
@@ -56,7 +56,7 @@ fernando_pi_sim <- data.frame(pi = rbeta(10000, .5, 1)) %>%
   mutate(y = rbinom(10000, size = 7, prob = pi))
 ```
 
-#### Ciara	Beta(3, 10)
+#### Ciara Beta(3, 10)
 
 ```{r ciara a}
 set.seed(84735)
@@ -74,7 +74,7 @@ ciara_pi_sim <- data.frame(pi = rbeta(10000, 3, 10)) %>%
   mutate(y = rbinom(10000, size = 7, prob = pi))
 ```
 
-#### Taylor	Beta(2, 0.1)
+#### Taylor Beta(2, 0.1)
 
 ```{r taylor a}
 set.seed(84735)
@@ -92,12 +92,11 @@ taylor_pi_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>%
   mutate(y = rbinom(10000, size = 7, prob = pi))
 ```
 
-## 14
+## 4.14
 
-a. In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
+a.  In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
 
-$$
-\begin{align*}
+\$\$ \begin{align*}
 
 Mode(\pi∣Y=y) &= (\alpha+y−1)/(\alpha+\beta+n−2) \\
 &= \frac{\alpha−1}{\alpha+\beta+n−2} + y/(\alpha+\beta+n−2) \\
@@ -105,29 +104,32 @@ Mode(\pi∣Y=y) &= (\alpha+y−1)/(\alpha+\beta+n−2) \\
 &= (\alpha+\beta−2)/(\alpha+\beta+n−2) ⋅ (\alpha−1)/(\alpha+\beta−2) + n/(\alpha+\beta+n−2) ⋅ y/n \\
 &= (\alpha+\beta−2) / (\alpha+\beta+n−2) ⋅ Mode(\pi) + n/(\alpha+\beta+n−2) ⋅ y/n \\
 
-\end{align*}
-$$
+\end{align*} \$\$
 
-b. To what value does the posterior mode converge as our sample size n increases? Support your answer with evidence. 
+b.  To what value does the posterior mode converge as our sample size n increases? Support your answer with evidence.
 
-{w1, w2,…} consists of a countable (possibly infinite) set of values
+{w1, w2,...} consists of a countable (possibly infinite) set of values
 
-lim n->infinity $$Pr(w_t|x_1,...x_n)=1$$, lim n->infinity $$Pr(w_i|x_1,...x_n)=0$$, i!=t
+\$\$
+
+\displaystyle \\lim*{n* \to \\infty} Pr(w_t\|x_1,...x_n)=1, \\ \displaystyle \\lim{n \to \\infty} Pr(w_i\|x_1,...x_n)=0, \\ i!=t
+
+\$\$
 
 Using the strong law of large numbers and given that there are appropriate regularity conditions, it can be shown that the posterior converges to 1 as n increases.
 
 # Chapter 5
 
-## 10
+## 5.10
 
-a. 
+a.  
 
 ```{r}
 data <- c(-0.7,1.2,4.5,-4)
 plot_normal_likelihood(y = data, sigma = 4)
 ```
 
-b.
+b.  
 
 ```{r}
 bayesrules::plot_beta(alpha = 2, beta = 7, mean = TRUE, mode = TRUE)
@@ -137,7 +139,7 @@ bayesrules::plot_beta(alpha = 2, beta = 7, mean = TRUE, mode = TRUE)
 plot_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
 ```
 
-c. 
+c.  
 
 ```{r}
 bayesrules::summarize_beta(alpha = 2, beta = 7)
@@ -147,45 +149,45 @@ bayesrules::summarize_beta(alpha = 2, beta = 7)
 summarize_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
 ```
 
-d.
+d.  
 
-My understanding of the mean evolved from the prior by the posterior's mean being below .25 while the mean of the prior was .25. 
+My understanding of the mean evolved from the prior by the posterior's mean being below .25 while the mean of the prior was .25.
 
-e. 
+e.  
 
 ```{r}
 pnorm(0, mean=7,sd=2, log.p=FALSE)
 ```
 
-f.
+f.  
 
 ```{r}
 pnorm(8, mean=7,sd=2, log.p=FALSE)
 ```
 
-## 11 
+## 5.11
 
-a.
+a.  
 
 ```{r}
 summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 86, n = 32)
 ```
 
-b.
+b.  
 
 ```{r}
 summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 82, n = 32)
 ```
 
-c. 
+c.  
 
 ```{r}
 summarize_normal_normal(mean = 80, sd = 4, sigma = 3, y_bar = 84, n = 32)
 ```
 
-## 13
+## 5.13
 
-a. 
+a.  
 
 ```{r}
 plot_normal(mean = 30, sd = 5)
@@ -195,7 +197,7 @@ plot_normal(mean = 30, sd = 5)
 bayesrules::plot_beta(alpha = 5, beta = 30, mean = TRUE, mode = TRUE)
 ```
 
-b.
+b.  
 
 ```{r}
 ggplot(weather_perth, aes(x = temp3pm)) + 
@@ -204,13 +206,13 @@ ggplot(weather_perth, aes(x = temp3pm)) +
 
 It is reasonable to assume a Normal model for the temperature data due to the patterns observed in the density plot.
 
-c.
+c.  
 
 ```{r}
 summarize_normal_normal(mean = 30, sd = 5, sigma = 3, y_bar = 40, n = 1000)
 ```
 
-d. 
+d.  
 
 ```{r}
 plot_normal_normal(mean = 30, sd = 5, sigma = 3,
