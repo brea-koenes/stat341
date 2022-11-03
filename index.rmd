@@ -11,11 +11,11 @@ output: html_document
 
 -   [Ch 6-7](ch6-7.html)
 
-    -   mainly ready to go
+    -   ready to go except for a couple
 
 -   [Ch 8](ch8.html)
 
-    -   some done, not ready
+    -   more than half ready to go
 
 -   [Ch 9-10](ch9-10.html)
 
