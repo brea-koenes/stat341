@@ -320,25 +320,127 @@ proposal
 
 a.  
 
+```{r}
+current <- 2
+proposal <- 2.1
+
+proposal_plaus <- dnorm(proposal, 0, 1) 
+
+current_plaus  <- dnorm(current, 0, 1) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 b.  
+
+```{r}
+current <- 2
+proposal <- 2.1
+
+proposal_plaus <- dnorm(proposal, 0, 2) 
+
+current_plaus  <- dnorm(current, 0, 2) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
 
 c.  
 
+```{r}
+current <- 2
+proposal <- 2.1
+
+proposal_plaus <- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.5,0.5)
+
+current_plaus  <- dnorm(current, 0, 1) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 d.  
 
+```{r}
+current <- 2
+proposal <- 2.1
+
+proposal_plaus <- dnorm(proposal, 0, 4)
+
+current_plaus  <- dnorm(current, 0, 4) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 e.  
+
+The scenario with the uniform distribution has an acceptance probability of 1, which we automatically accept. 
+
+When a proposal is close to the current location, they will have a similar posterior plausibility and will most likely be accepted; that is why so many of the acceptance probabilities above are high. 
 
 ## 8
 
 a.  
 
+```{r}
+current <- 1.8
+proposal <- 1.6
+
+proposal_plaus <- dnorm(proposal, 0, 2)
+
+current_plaus  <- dnorm(current, 0, 2) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 b.  
+
+```{r}
+current <- 1.8
+proposal <- 1.6
+
+proposal_plaus <- dnorm(proposal, 0, .5)
+
+current_plaus  <- dnorm(current, 0, .5) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
 
 c.  
 
+```{r}
+current <- 1.8
+proposal <- 1.6
+
+proposal_plaus <- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.3,0.3)
+
+current_plaus  <- dnorm(current, 0, 1) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 d.  
 
+```{r}
+current <- 1.8
+proposal <- 1.6
+
+proposal_plaus <- dnorm(proposal, 0, 4)
+
+current_plaus  <- dnorm(current, 0, 4) 
+
+alpha <- min(1, proposal_plaus / current_plaus)
+alpha
+```
+
 e.  
+
+They are all 100% acceptance probability, maybe becuase the chain has already been at that location so it must have already been accepted.
 
 ## 7.10
 
@@ -570,6 +672,34 @@ Having a low w is important in scenarios with more iterations. As seen in c and 
 
 a.  
 
+```{r}
+mh_tour_normal <- function(N, w){
+  
+  # 1. Start the chain at location 3
+  current <- 3
+
+  # 2. Initialize the simulation
+  mu <- rep(0, N)
+
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_mh_iteration(w = w, current = current)
+    
+    # Record next location
+    mu[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), mu))
+}
+
+set.seed(84735)
+```
+
 b.  
 
 c.  
@@ -584,11 +714,76 @@ f.
 
 a.  
 
+Exponential becuase it is greater than 0.
+
 b.  
+
+```{r}
+one_iteration <- function(a, b, current){
+ # Propose the next chain location
+ proposal <- rbeta(1, a, b)
+  
+ # Decide whether or not to go there
+ proposal_plaus <- dbeta(proposal, 2, 3) * dbinom(1, 2, proposal)
+ proposal_q     <- dbeta(proposal, a, b)
+ current_plaus  <- dbeta(current, 2, 3) * dbinom(1, 2, current)
+ current_q      <- dbeta(current, a, b)
+ alpha <- min(1, proposal_plaus / current_plaus * current_q / proposal_q)
+ next_stop <- sample(c(proposal, current), 
+                     size = 1, prob = c(alpha, 1-alpha))
+  
+ return(data.frame(proposal, alpha, next_stop))}
+```
+
+```{r}
+betabin_tour <- function(N, a, b){
+  # 1. Start the chain at location 1
+  current <- 1
+
+  # 2. Initialize the simulation
+  pi <- rep(0, N)
+  
+  # 3. Simulate N Markov chain stops
+  for(i in 1:N){    
+    # Simulate one iteration
+    sim <- one_iteration(a = a, b = b, current = current)
+    
+    # Record next location
+    pi[i] <- sim$next_stop
+    
+    # Reset the current location
+    current <- sim$next_stop
+  }
+  
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), pi))
+}
+```
+
+```{r}
+set.seed(84735)
+betabin_sim <- betabin_tour(N = 1000, a = 1, b = .1)
+
+ggplot(betabin_sim, aes(x = iteration, y = pi)) + 
+  geom_line()
+```
 
 c.  
 
+0.4
+
 d.  
+
+```{r}
+# Plot the results
+ggplot(betabin_sim, aes(x = iteration, y = pi)) + 
+  geom_line()
+ggplot(betabin_sim, aes(x = pi)) + 
+  geom_histogram(aes(y = ..density..), color = "white") + 
+  stat_function(fun = dbeta, args = list(3, 4), color = "blue")
+```
+
+It is not excellent at approximation.
 
 ## 7.15
 
