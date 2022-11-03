@@ -45,7 +45,7 @@ c.
 require(bayesplot)
 
 # Trace plots of parallel chains
-mcmc_trace(model, size = 100)
+mcmc_trace(model, size = .1)
 
 # Density plots of parallel chains
 mcmc_dens_overlay(model)
@@ -75,19 +75,59 @@ The data is normally distributed enough; the points are fairly evenly distribute
 
 a.
 
+```{r}
+bike_model <- stan_glm(rides ~ humidity, data = bikes, 
+  family = gaussian,
+  prior_PD = FALSE,
+  prior_intercept = normal(1000, 2000, autoscale = TRUE),
+  prior = normal(0, 10, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 5, iter = 4000*2, seed = 84735)
+```
+
 b.
 
+```{r}
+# Effective sample size ratio 
+neff_ratio(bike_model)
+```
+
+```{r}
+# Density plots of parallel chains
+mcmc_dens_overlay(bike_model)
+```
+
+Given the results above, we can trust these simulation results.
+
 c.
+
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(bike_model, size = .1)
+```
+
+The sigma is more centered than 9.9's and the scales are much different. 
 
 ## 9.12
 
 a.
 
+```{r}
+tidy(bike_model, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.95)
+```
+
 b.
+
+The posterior median relationship is 3935.315 - 8.128. That means for every one degree increase in humidity, we expect ridership to decrease by about 8 rides.
 
 c.
 
+The CI represents the uncertainty in the relationship. $$\beta_1$$ (-16.16035,1.899641) indicates that this slope could range anywhere between about -16 and 2.
+
 d.
+
+I would say that we have alright posterior evidence that there’s a negative association between ridership and humidity. The standard error is low enough for it to carry some weight, but not low enough for there to be very certain evidence to their relationship. However, the CI is a small range, so that does help the credibility of the evidence of their relationship.
 
 ## 9.13
 
@@ -113,7 +153,17 @@ d.
 
 a.
 
+```{r}
+penguins_bayes |>
+  ggplot(aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point()
+```
+
+There appears to be a positive linear relationship between flipper and bill length.
+
 b.
+
+It meets the conditions for a simple normal regression model. It has linearity on the plot above. If it also has independent observations and is normally distributed on a fitted vs resids plot, we can use a normal model.
 
 ## 9.18
 
