@@ -11,7 +11,7 @@ output: html_document
 
 -   [Ch 6-7](ch6-7.html)
 
-    -   ready to go except for a couple
+    -   ready to go 
 
 -   [Ch 8](ch8.html)
 
