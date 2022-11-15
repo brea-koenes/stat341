@@ -24,12 +24,12 @@ a.
 grid_data <- data.frame(pi_grid = seq(from = 0, to = 1, length = 5))
 
 # Evaluate the prior & likelihood at each pi
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(prior = dbeta(pi_grid, 3, 8),
          likelihood = dbinom(2, 10, pi_grid))
 
 # Approximate the posterior
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(unnormalized = likelihood * prior,
          posterior = unnormalized / sum(unnormalized))
 
@@ -48,12 +48,12 @@ b.
 grid_data <- data.frame(pi_grid = seq(from = 0, to = 1, length = 201))
 
 # Evaluate the prior & likelihood at each pi
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(prior = dbeta(pi_grid, 3, 8),
          likelihood = dbinom(2, 10, pi_grid))
 
 # Approximate the posterior
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(unnormalized = likelihood * prior,
          posterior = unnormalized / sum(unnormalized))
 
@@ -73,12 +73,12 @@ a.
 grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 9))
 
 # Evaluate prior & likelihood
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(prior = dgamma(lambda_grid, 20, 5),
          likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
 
 # Approximate posterior
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(unnormalized = likelihood * prior,
          posterior = unnormalized / sum(unnormalized))
 
@@ -102,12 +102,12 @@ b.
 grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 201))
 
 # Evaluate prior & likelihood
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(prior = dgamma(lambda_grid, 20, 5),
          likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
 
 # Approximate the posterior
-grid_data <- grid_data %>% 
+grid_data <- grid_data |> 
   mutate(unnormalized = likelihood * prior,
          posterior = unnormalized / sum(unnormalized))
 
@@ -127,15 +127,7 @@ ggplot(post_sample, aes(x = lambda_grid)) +
 ## modified 6.7
 
 ```{r}
-library(ggformula)
-
-gf_dist('gamma', shape = 2, rate = 2)
-```
-
-```{r}
-# define grid
 y = c(7.1,8.9,8.4,8.6)
-
 
 grid <- expand.grid(
   mu = seq(4, 16, by=.05), 
@@ -145,18 +137,13 @@ grid <- expand.grid(
       liklihood = purrr::map2_dbl(mu, sigma, ~prod(dnorm(y, .x, .y))),
       posterior = prior*liklihood
   )
+```
 
+```{r}
+set.seed(84735)
 
-# to be continued...
-
-prod(dnorm(y, 4, 1))
-prod(dnorm(y, 8, 1))
-prod(dnorm(y, 12, 1))
-prod(dnorm(y, 16, 2))
-
-
-grid |> slice_sample(n=20000, weight_by = posterior, replace = TRUE) |>
-  gf_density2d(mu~sigma)
+post_sample <- sample_n(grid, size = 10000, 
+                        weight = posterior, replace = TRUE)
 ```
 
 ## 6.13
@@ -267,16 +254,6 @@ summarize_gamma_poisson(shape = 5, rate = 5, sum_y = 1, n = 3)
 My MCMC approximation is closer to the prior than approximating using a posterior model.
 
 ## modified 6.17
-
-```{r}
-data <- c(7.1,8.9,8.4,8.6)
-
-plot_normal_likelihood(y = data, sigma = 0.5)
-```
-
-
-
-to be continued...
 
 # Chapter 7
 

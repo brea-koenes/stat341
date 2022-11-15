@@ -43,7 +43,7 @@ kimya_posterior |>
 
 #### Fernando Beta(0.5, 1)
 
-```{r fernando c}
+```{r fernando}
 set.seed(84735)
 Fernando_sim <- data.frame(pi = rbeta(10000, 0.5, 1)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
@@ -62,7 +62,7 @@ Fernando_posterior |>
 
 #### Ciara Beta(3, 10)
 
-```{r fernando c}
+```{r}
 set.seed(84735)
 Ciara_sim <- data.frame(pi = rbeta(10000, 3, 10)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
