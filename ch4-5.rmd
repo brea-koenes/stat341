@@ -3,6 +3,8 @@ html_document:
   code_download: yes
 author: "Brea Koenes"
 date: "10/19/2022"
+fig_width: 8
+fig_height: 3
 output:
   html_document:
     df_print: paged

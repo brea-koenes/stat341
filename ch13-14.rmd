@@ -1,0 +1,37 @@
+---
+title: "Untitled"
+author: "Brea Koenes"
+date: "11/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load packages
+library(bayesrules)
+library(tidyverse)
+library(ggformula)
+library(dplyr)
+```
+
+# Chapter 13
+
+## 6
+
+## 7
+
+## 8
+
+## 9
+
+# Chapter 14
+
+## 4
+
+## 5
+
+## 6
+
+## 7
+
+## 8 
+

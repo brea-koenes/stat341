@@ -38,6 +38,7 @@ set.seed(84735)
 # Sample from the discretized posterior
 post_sample <- sample_n(grid_data, size = 10000, 
                         weight = posterior, replace = TRUE)
+post_sample
 ```
 
 b.  
@@ -133,11 +134,29 @@ gf_dist('gamma', shape = 2, rate = 2)
 
 ```{r}
 # define grid
+y = c(7.1,8.9,8.4,8.6)
+
+
 grid <- expand.grid(
-  mu = seq(4, 16, by=4), 
-  sigma = seq(1, 4, by=1))
+  mu = seq(4, 16, by=.05), 
+  sigma = seq(.1, 4, by=.05)) |>
+  mutate(
+      prior = dnorm(mu,10,2)*dgamma(sigma, 2, 2),
+      liklihood = purrr::map2_dbl(mu, sigma, ~prod(dnorm(y, .x, .y))),
+      posterior = prior*liklihood
+  )
+
 
 # to be continued...
+
+prod(dnorm(y, 4, 1))
+prod(dnorm(y, 8, 1))
+prod(dnorm(y, 12, 1))
+prod(dnorm(y, 16, 2))
+
+
+grid |> slice_sample(n=20000, weight_by = posterior, replace = TRUE) |>
+  gf_density2d(mu~sigma)
 ```
 
 ## 6.13
@@ -254,6 +273,8 @@ data <- c(7.1,8.9,8.4,8.6)
 
 plot_normal_likelihood(y = data, sigma = 0.5)
 ```
+
+
 
 to be continued...
 
@@ -376,9 +397,9 @@ alpha
 
 e.  
 
-The scenario with the uniform distribution has an acceptance probability of 1, which we automatically accept. 
+The scenario with the uniform distribution has an acceptance probability of 1, which we automatically accept.
 
-When a proposal is close to the current location, they will have a similar posterior plausibility and will most likely be accepted; that is why so many of the acceptance probabilities above are high. 
+When a proposal is close to the current location, they will have a similar posterior plausibility and will most likely be accepted; that is why so many of the acceptance probabilities above are high.
 
 ## 8
 

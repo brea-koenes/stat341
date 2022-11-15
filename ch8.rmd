@@ -23,25 +23,25 @@ library(broom.mixed)
 
 ## 8.13
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
 ## 8.14
 
-a.
+a.  
 
-Beta-Binomial is the correct choice in model because the prior is binomial. Specifically, the subject either believes in climate change or does not. 
+Beta-Binomial is the correct choice in model because the prior is binomial. Specifically, the subject either believes in climate change or does not.
 
-b. and c.
+b.  and c.
 
 My prior would be Beta(1,2). It is the same as the authors.
 
-d.
+d.  
 
 ```{r}
 summary(pulse_of_the_nation)
@@ -49,7 +49,7 @@ summary(pulse_of_the_nation)
 
 150/1000= 15% don't believe it's real at all
 
-e.
+e.  
 
 ```{r}
 summarize_beta_binomial(alpha = 1, beta = 2, y = 150, n = 1000)
@@ -61,11 +61,11 @@ qbeta(c(0.25, 0.975), 151, 852)
 
 ## 8.15
 
-a.
+a.  
 
 Given the credible interval above, we can keep our null hypothesis that it is over 10%.
 
-b.
+b.  
 
 ```{r}
 prior_prob <- pbeta(0.10, 1, 2)
@@ -80,7 +80,7 @@ post_odds <- post_prob / (1 - post_prob)
 post_odds
 ```
 
-c.
+c.  
 
 ```{r}
 BF <- post_odds / prior_odds
@@ -89,13 +89,13 @@ BF
 
 The posterior odds of our hypothesis are roughly 18 times higher than the prior odds
 
-d.
+d.  
 
-Our alternative hypothesis that pi is greater than 10% is statistically significant and likely to occur. 
+Our alternative hypothesis that pi is greater than 10% is statistically significant and likely to occur.
 
 ## 8.16
 
-a.
+a.  
 
 ```{r}
 require(rstan)
@@ -119,7 +119,7 @@ sim <- stan(model_code = model, data = list(Y = 150),
                 chains = 4, iter = 5000*2, seed = 84735)
 ```
 
-b.
+b.  
 
 ```{r}
 require(bayesplot)
@@ -133,7 +133,7 @@ mcmc_dens_overlay(sim, pars = "pi")
 mcmc_acf(sim, pars = "pi")
 ```
 
-c.
+c.  
 
 ```{r}
 rhat(sim, pars = "pi")
@@ -141,17 +141,17 @@ rhat(sim, pars = "pi")
 neff_ratio(sim, pars = "pi")
 ```
 
-R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample. 
+R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample.
 
 ## 8.17
 
-a.
+a.  
 
 ```{r}
 tidy(sim, conf.int = TRUE, conf.level = 0.95)
 ```
 
-b.
+b.  
 
 ```{r}
 chains_df <- as.data.frame(sim, pars = "lp__", include = FALSE)
@@ -163,13 +163,13 @@ chains_df |>
   tabyl(exceeds)
 ```
 
-c.
+c.  
 
 The approximations in parts a and b are fairly close to the actual posterior values calculated in Exercises 8.14 and 8.15.
 
 ## 8.18
 
-a.
+a.  
 
 ```{r}
 set.seed(1)
@@ -179,13 +179,13 @@ chains_df <- chains_df |>
   mutate(y_predict = rbinom(length(pi), size = 100, prob = pi))
 ```
 
-b.
+b.  
 
 ```{r}
 summary(chains_df)
 ```
 
-c.
+c.  
 
 ```{r}
 chains_df |>
@@ -196,43 +196,40 @@ chains_df |>
 
 ## 8.21
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
 ## 8.22
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
 ## 8.23
 
-a.
+a.  
 
-b.
+b.  
 
-c.
+c.  
 
-d.
+d.  
 
-e.
+e.  
 
 ## 8.24
 
-a.
+a.  
 
-b.
+b.  
 
-c.
-
-
-
+c.  
