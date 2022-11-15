@@ -24,101 +24,97 @@ library(dplyr)
 
 #### Kimya Beta(1, 2)
 
-```{r kimya a}
+```{r}
 set.seed(84735)
-kimya_sim <- data.frame(pi = rbeta(10000, 1, 2)) %>% 
-  mutate(y = rbinom(10000, size = 7, prob = 3/7))
-```
-
-```{r kimya b}
-kimya_hist <- gf_histogram(~y, data = kimya_sim, geom = "bar")
-```
-
-```{r kimya c}
-set.seed(84735)
-kimya_pi_sim <- data.frame(pi = rbeta(10000, 1, 2)) %>% 
+kimya_sim <- data.frame(pi = rbeta(10000, 1, 2)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
+
+kimya_posterior <- kimya_sim |> 
+  filter(y == 3)
+
+ggplot(kimya_posterior, aes(x = pi)) + 
+  geom_histogram()
+```
+
+```{r}
+kimya_posterior |>
+  summarize(mean(pi), sd(pi))
 ```
 
 #### Fernando Beta(0.5, 1)
 
-```{r fernando a}
-set.seed(84735)
-fernando_sim <- data.frame(pi = rbeta(10000, .5, 1)) %>% 
-  mutate(y = rbinom(10000, size = 7, prob = 3/7))
-```
-
-```{r fernando b}
-fernando_hist <- gf_histogram(~y, data = fernando_sim, geom = "bar")
-```
-
 ```{r fernando c}
 set.seed(84735)
-fernando_pi_sim <- data.frame(pi = rbeta(10000, .5, 1)) %>% 
+Fernando_sim <- data.frame(pi = rbeta(10000, 0.5, 1)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
+
+Fernando_posterior <- Fernando_sim |> 
+  filter(y == 3)
+
+ggplot(Fernando_posterior, aes(x = pi)) + 
+  geom_histogram()
+```
+
+```{r}
+Fernando_posterior |>
+  summarize(mean(pi), sd(pi))
 ```
 
 #### Ciara Beta(3, 10)
 
-```{r ciara a}
+```{r fernando c}
 set.seed(84735)
-ciara_sim <- data.frame(pi = rbeta(10000, 3, 10)) %>% 
-  mutate(y = rbinom(10000, size = 7, prob = 3/7))
-```
-
-```{r ciara b}
-ciara_hist <- gf_histogram(~y, data = ciara_sim, geom = "bar")
-```
-
-```{r ciara c}
-set.seed(84735)
-ciara_pi_sim <- data.frame(pi = rbeta(10000, 3, 10)) %>% 
+Ciara_sim <- data.frame(pi = rbeta(10000, 3, 10)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
+
+Ciara_posterior <- Ciara_sim |> 
+  filter(y == 3)
+
+ggplot(Ciara_posterior, aes(x = pi)) + 
+  geom_histogram()
+```
+
+```{r}
+Ciara_posterior |> 
+  summarize(mean(pi), sd(pi))
 ```
 
 #### Taylor Beta(2, 0.1)
 
-```{r taylor a}
+```{r}
 set.seed(84735)
-taylor_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>% 
-  mutate(y = rbinom(10000, size = 7, prob = 3/7))
-```
-
-```{r taylor b}
-taylor_hist <- gf_histogram(~y, data = taylor_sim, geom = "bar")
-```
-
-```{r taylor c}
-set.seed(84735)
-taylor_pi_sim <- data.frame(pi = rbeta(10000, 2, .1)) %>% 
+Taylor_sim <- data.frame(pi = rbeta(10000, 1, 2)) |> 
   mutate(y = rbinom(10000, size = 7, prob = pi))
+
+Taylor_posterior <- Taylor_sim |> 
+  filter(y == 3)
+
+ggplot(Taylor_posterior, aes(x = pi)) + 
+  geom_histogram()
+```
+
+```{r}
+Taylor_posterior |>
+  summarize(mean(pi), sd(pi))
 ```
 
 ## 4.14
 
-a.  In the Beta-Binomial setting, show that we can write the posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
+a.  The posterior mode of pi as the weighted average of the prior mode and observed sample success rate:
 
-\$\$ \begin{align*}
+$$ \begin{align*}
 
-Mode(\pi∣Y=y) &= (\alpha+y−1)/(\alpha+\beta+n−2) \\
-&= \frac{\alpha−1}{\alpha+\beta+n−2} + y/(\alpha+\beta+n−2) \\
-&= (\alpha−1)/(\alpha+\beta+n−2) ⋅ (\alpha+\beta−2)/(\alpha+\beta−2) + y/(\alpha+\beta+n−2) ⋅ n/n \\
-&= (\alpha+\beta−2)/(\alpha+\beta+n−2) ⋅ (\alpha−1)/(\alpha+\beta−2) + n/(\alpha+\beta+n−2) ⋅ y/n \\
-&= (\alpha+\beta−2) / (\alpha+\beta+n−2) ⋅ Mode(\pi) + n/(\alpha+\beta+n−2) ⋅ y/n \\
+Mode(\pi∣Y=y) &= \frac{\alpha+y−1}{\alpha+\beta+n−2} \\
+&= \frac{\alpha−1}{\alpha+\beta+n−2} + \frac{y}{\alpha+\beta+n−2} \\
+&= \frac{\alpha−1}{\alpha+\beta+n−2} ⋅ \frac{\alpha+\beta−2}{\alpha+\beta−2} + \frac{y}{\alpha+\beta+n−2} ⋅ \frac{n}{n} \\
+&= \frac{\alpha+\beta−2}{\alpha+\beta+n−2} ⋅ \frac{\alpha−1}{\alpha+\beta−2} + \frac{n}{\alpha+\beta+n−2} ⋅ \frac{y}{n} \\
+&= \frac{\alpha+\beta−2}{\alpha+\beta+n−2} ⋅ Mode(\pi) + \frac{n}{\alpha+\beta+n−2} ⋅ \frac{y}{n} \\
 
-\end{align*} \$\$
+\end{align*} $$
 
-b.  To what value does the posterior mode converge as our sample size n increases? Support your answer with evidence.
+b.
 
-{w1, w2,...} consists of a countable (possibly infinite) set of values
-
-\$\$
-
-\displaystyle \\lim*{n* \to \\infty} Pr(w_t\|x_1,...x_n)=1, \\ \displaystyle \\lim{n \to \\infty} Pr(w_i\|x_1,...x_n)=0, \\ i!=t
-
-\$\$
-
-Using the strong law of large numbers and given that there are appropriate regularity conditions, it can be shown that the posterior converges to 1 as n increases.
+Using the strong law of large numbers and given that there are appropriate regularity conditions, the posterior mode converges to 1 as n increases.
 
 # Chapter 5
 
@@ -128,17 +124,13 @@ a.
 
 ```{r}
 data <- c(-0.7,1.2,4.5,-4)
-plot_normal_likelihood(y = data, sigma = 4)
+plot_normal_likelihood(y = data, sigma = 2)
 ```
 
 b.  
 
 ```{r}
-bayesrules::plot_beta(alpha = 2, beta = 7, mean = TRUE, mode = TRUE)
-```
-
-```{r}
-plot_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
+plot_normal_normal(mean = 7, sd = 2.6, sigma = 2, y_bar = .25, n = 4)
 ```
 
 c.  
@@ -148,7 +140,7 @@ bayesrules::summarize_beta(alpha = 2, beta = 7)
 ```
 
 ```{r}
-summarize_normal_normal(mean = 7, sd = 2, sigma = 2.6, y_bar = 7.2, n = 4)
+summarize_normal_normal(mean = 7, sd = 2.6, sigma = 2, y_bar = .25, n = 4)
 ```
 
 d.  
@@ -195,10 +187,6 @@ a.
 plot_normal(mean = 30, sd = 5)
 ```
 
-```{r}
-bayesrules::plot_beta(alpha = 5, beta = 30, mean = TRUE, mode = TRUE)
-```
-
 b.  
 
 ```{r}
@@ -206,19 +194,25 @@ ggplot(weather_perth, aes(x = temp3pm)) +
   geom_density()
 ```
 
-It is reasonable to assume a Normal model for the temperature data due to the patterns observed in the density plot.
+It is reasonable to assume a Normal model for the temperature data. We can assume this because there is a symetrical bell-shaped distribution.
 
 c.  
 
 ```{r}
-summarize_normal_normal(mean = 30, sd = 5, sigma = 3, y_bar = 40, n = 1000)
+weather_perth |>
+  summarize(mean(temp3pm))
+```
+
+```{r}
+summarize_normal_normal(mean = 30, sd = 5, sigma = 3, 
+                        y_bar = 24, n = 1000)
 ```
 
 d.  
 
 ```{r}
 plot_normal_normal(mean = 30, sd = 5, sigma = 3,
-                   y_bar = 40, n = 1000)
+                   y_bar = 24, n = 1000)
 ```
 
-I expected the posterior mean to be higher than the prior, but I did not expect it to be that much higher. Also, did anticipate the sd and variance being much lower for the posterior compared to the prior.
+Given the prior, I originally thought that the average temperature is around 30 degrees Celsius. However, there was uncertainty in that prior since it could be anywhere from 10 to 50 degrees. Due to this uncertainty, I was not surprised to see that the posterior is centered around 24. 
