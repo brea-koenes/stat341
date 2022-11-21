@@ -38,29 +38,3 @@ library(dplyr)
 ## 8
 
 ## 9
-
-
-
-
-ch 12 questions
-- Poisson is used over Normal when Y is not assumed to be symmetric or negative
-- When variability exceeds assumptions (overdispersed) we use negative binomial
-
-ch 13 questions
-- odds vs probability - odds is the probability assuming the event doesn't happen?
-- interpreting specificity and sensitivity
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

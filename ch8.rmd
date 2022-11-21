@@ -198,9 +198,28 @@ chains_df |>
 
 a.  
 
+```{r}
+gf_point(count_per_100~hours, data=loons)
+```
+
+Looking at the distribution of data, I would choose a Gamma-Poisson model. The Poisson model won't predict negative values and the shape of its distribution changes. 
+
 b.  
 
+My prior is (2, 1). My reasoning is that the typical rate of loon sightings is 2 per 100 hours, giving us the first part of our prior. For the second, I chose 1/100 due to there being a standard deviation of 1 per 100-hours.
+
 c.  
+
+```{r}
+summary(loons)
+```
+
+```{r}
+loons
+```
+
+
+The mean count per 100 is 1.5. There are observations of count_per_100, including 0's. 
 
 d.  
 
