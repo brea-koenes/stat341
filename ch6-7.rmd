@@ -82,8 +82,7 @@ grid_data <- grid_data |>
 
 # Approximate posterior
 grid_data <- grid_data |> 
-  mutate(unnormalized = likelihood * prior,
-         posterior = unnormalized / sum(unnormalized))
+  mutate(posterior = likelihood * prior)
 
 set.seed(84735)
 
@@ -111,8 +110,7 @@ grid_data <- grid_data |>
 
 # Approximate the posterior
 grid_data <- grid_data |> 
-  mutate(unnormalized = likelihood * prior,
-         posterior = unnormalized / sum(unnormalized))
+  mutate(posterior = likelihood * prior)
 
 set.seed(84735)
 
@@ -187,7 +185,7 @@ mcmc_trace(bb_sim, pars = "pi", size = 0.1)
 
 c.  
 
-The range is 0 to 6000. The end of the range is not 12000, but rather 6000 calculated by 6000\*2.
+The range is 0 to 4000. The maximum in the range of values is not 12000 because some iterations are used for the warmup.
 
 d.  
 
@@ -231,7 +229,7 @@ gp_model <- "
 
 # Simulate the posterior
 gp_sim <- stan(model_code = gp_model, data = list(Y = c(0,1,0)), 
-               chains = 4, iter = 10000, seed = 84735)
+               chains = 4, iter = (10000*2)/4, seed = 84735)
 ```
 
 b.  
