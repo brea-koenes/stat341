@@ -30,15 +30,16 @@ grid_data <- grid_data |>
 
 # Approximate the posterior
 grid_data <- grid_data |> 
-  mutate(unnormalized = likelihood * prior,
-         posterior = unnormalized / sum(unnormalized))
+  mutate(posterior = likelihood * prior)
 
 set.seed(84735)
 
 # Sample from the discretized posterior
-post_sample <- sample_n(grid_data, size = 10000, 
+post_sample <- sample_n(grid_data, size = 1000, 
                         weight = posterior, replace = TRUE)
-head(post_sample)
+
+post_sample |>
+  gf_dhistogram(~pi)
 ```
 
 b.  
@@ -54,14 +55,16 @@ grid_data <- grid_data |>
 
 # Approximate the posterior
 grid_data <- grid_data |> 
-  mutate(unnormalized = likelihood * prior,
-         posterior = unnormalized / sum(unnormalized))
+  mutate(posterior = likelihood * prior)
 
 set.seed(84735)
 
 # Sample from the discretized posterior
 post_sample <- sample_n(grid_data, size = 10000, 
                         weight = posterior, replace = TRUE)
+
+gf_dhistogram(~pi, data=post_sample) |>
+  gf_dist("beta", 3+2, 8+8)
 ```
 
 ## 6.6
@@ -70,12 +73,12 @@ a.
 
 ```{r}
 # Define grid
-grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 9))
+grid_data   <- data.frame(lambda = seq(from = 0, to = 8, length = 90))
 
 # Evaluate prior & likelihood
 grid_data <- grid_data |> 
-  mutate(prior = dgamma(lambda_grid, 20, 5),
-         likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
+  mutate(prior = dgamma(lambda, 20, 5),
+         likelihood = prod(dpois(c(0,1,0), lambda)))
 
 # Approximate posterior
 grid_data <- grid_data |> 
@@ -89,8 +92,8 @@ post_sample <- sample_n(grid_data, size = 10000,
                         weight = posterior, replace = TRUE)
 
 # Histogram of the grid simulation with posterior pdf 
-ggplot(post_sample, aes(x = lambda_grid)) + 
-  geom_histogram(aes(y = ..density..), color = "white") + 
+ggplot(post_sample, aes(x = lambda)) + 
+  geom_histogram(aes(y = stat(density))) + 
   stat_function(fun = dgamma, args = list(20, 5)) + 
   lims(x = c(0, 8))
 ```
@@ -99,12 +102,12 @@ b.
 
 ```{r}
 # Define grid 
-grid_data   <- data.frame(lambda_grid = seq(from = 0, to = 8, length = 201))
+grid_data   <- data.frame(lambda = seq(from = 0, to = 8, length = 201))
 
 # Evaluate prior & likelihood
 grid_data <- grid_data |> 
-  mutate(prior = dgamma(lambda_grid, 20, 5),
-         likelihood = dpois(2, lambda_grid) * dpois(8, lambda_grid))
+  mutate(prior = dgamma(lambda, 20, 5),
+         likelihood = prod(dpois(c(0,1,0), lambda)))
 
 # Approximate the posterior
 grid_data <- grid_data |> 
@@ -118,8 +121,8 @@ post_sample <- sample_n(grid_data, size = 10000,
                         weight = posterior, replace = TRUE)
 
 # Histogram of the grid simulation with posterior pdf 
-ggplot(post_sample, aes(x = lambda_grid)) + 
-  geom_histogram(aes(y = ..density..), color = "white") + 
+ggplot(post_sample, aes(x = lambda)) + 
+  geom_histogram(aes(y = ..density..)) + 
   stat_function(fun = dgamma, args = list(20, 5)) + 
   lims(x = c(0, 8))
 ```
@@ -144,6 +147,8 @@ set.seed(84735)
 
 post_sample <- sample_n(grid, size = 10000, 
                         weight = posterior, replace = TRUE)
+
+gf_density2d(mu~sigma, data=post_sample)
 ```
 
 ## 6.13
@@ -170,7 +175,7 @@ bb_model <- "
 # Simulate the posterior
 require(rstan)
 bb_sim <- stan(model_code = bb_model, data = list(Y = 2), 
-               chains = 3, iter = 12000, seed = 84735)
+               chains = 3, iter = (12000*2)/3, seed = 84735)
 ```
 
 b.  
