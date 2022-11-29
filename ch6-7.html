@@ -533,8 +533,8 @@ bb_model &lt;- &quot;
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 1.1e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
+## Chain 1: Gradient evaluation took 9e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -551,9 +551,9 @@ bb_model &lt;- &quot;
 ## Chain 1: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 7.44342 seconds (Warm-up)
-## Chain 1:                7.38335 seconds (Sampling)
-## Chain 1:                14.8268 seconds (Total)
+## Chain 1:  Elapsed Time: 7.43094 seconds (Warm-up)
+## Chain 1:                7.40247 seconds (Sampling)
+## Chain 1:                14.8334 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 2).
@@ -576,9 +576,9 @@ bb_model &lt;- &quot;
 ## Chain 2: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.58877 seconds (Warm-up)
-## Chain 2:                7.13242 seconds (Sampling)
-## Chain 2:                14.7212 seconds (Total)
+## Chain 2:  Elapsed Time: 7.61146 seconds (Warm-up)
+## Chain 2:                7.13895 seconds (Sampling)
+## Chain 2:                14.7504 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 3).
@@ -601,9 +601,9 @@ bb_model &lt;- &quot;
 ## Chain 3: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 7.03955 seconds (Warm-up)
-## Chain 3:                8.10406 seconds (Sampling)
-## Chain 3:                15.1436 seconds (Total)
+## Chain 3:  Elapsed Time: 7.08972 seconds (Warm-up)
+## Chain 3:                8.02237 seconds (Sampling)
+## Chain 3:                15.1121 seconds (Total)
 ## Chain 3:</code></pre>
 <pre><code>## Warning: There were 12000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -671,8 +671,8 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 1e-05 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
+## Chain 1: Gradient evaluation took 8e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -689,15 +689,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 4.11765 seconds (Warm-up)
-## Chain 1:                4.06514 seconds (Sampling)
-## Chain 1:                8.18279 seconds (Total)
+## Chain 1:  Elapsed Time: 4.10959 seconds (Warm-up)
+## Chain 1:                4.12618 seconds (Sampling)
+## Chain 1:                8.23577 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 3e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -714,9 +714,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 2: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 3.9043 seconds (Warm-up)
-## Chain 2:                4.20295 seconds (Sampling)
-## Chain 2:                8.10725 seconds (Total)
+## Chain 2:  Elapsed Time: 4.02396 seconds (Warm-up)
+## Chain 2:                4.23715 seconds (Sampling)
+## Chain 2:                8.26111 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 3).
@@ -739,15 +739,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 3: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 3.93129 seconds (Warm-up)
-## Chain 3:                3.91681 seconds (Sampling)
-## Chain 3:                7.8481 seconds (Total)
+## Chain 3:  Elapsed Time: 4.25906 seconds (Warm-up)
+## Chain 3:                4.16443 seconds (Sampling)
+## Chain 3:                8.42349 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 4).
 ## Chain 4: 
-## Chain 4: Gradient evaluation took 3e-06 seconds
-## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+## Chain 4: Gradient evaluation took 4e-06 seconds
+## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 ## Chain 4: Adjust your expectations accordingly!
 ## Chain 4: 
 ## Chain 4: 
@@ -764,9 +764,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 4: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 3.90283 seconds (Warm-up)
-## Chain 4:                4.41289 seconds (Sampling)
-## Chain 4:                8.31572 seconds (Total)
+## Chain 4:  Elapsed Time: 3.97858 seconds (Warm-up)
+## Chain 4:                4.50507 seconds (Sampling)
+## Chain 4:                8.48365 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 10000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -798,12 +798,32 @@ a posterior model.</p>
 </div>
 <div id="modified-6.17" class="section level2">
 <h2>modified 6.17</h2>
+<pre class="r"><code>require(rstan)
+model &lt;- &quot;
+  data {
+    real y[4];
+    y[1] = 7.1;  y[2] = 8.9;   y[3]  = 8.4; 
+    y[4] = 8.6;
+  }
+  parameters {
+    real&lt;lower=4, upper=16&gt; mu;
+    real&lt;lower=.1, upper=4&gt; sigma;
+  }
+  model {
+    y ~ normal(mu, sigma);
+    mu ~ normal(10, 2);
+    sigma ~ gamma(2,2);
+  }
+&quot;
+
+#sim &lt;- stan(model_code = model, iter = 5000*2, seed = 84735)
+#plot(sim)</code></pre>
 </div>
 </div>
 <div id="chapter-7" class="section level1">
 <h1>Chapter 7</h1>
 <div id="section-4" class="section level2">
-<h2>6</h2>
+<h2>7.7</h2>
 <ol style="list-style-type: lower-alpha">
 <li></li>
 </ol>
@@ -919,7 +939,7 @@ similar posterior plausibility and will most likely be accepted; that is
 why so many of the acceptance probabilities above are high.</p>
 </div>
 <div id="section-6" class="section level2">
-<h2>8</h2>
+<h2>7.8</h2>
 <ol style="list-style-type: lower-alpha">
 <li></li>
 </ol>
