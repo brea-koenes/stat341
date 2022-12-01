@@ -263,12 +263,10 @@ require(rstan)
 model <- "
   data {
     real y[4];
-    y[1] = 7.1;  y[2] = 8.9;   y[3]  = 8.4; 
-    y[4] = 8.6;
   }
   parameters {
-    real<lower=4, upper=16> mu;
-    real<lower=.1, upper=4> sigma;
+    real mu;
+    real<lower=0> sigma;
   }
   model {
     y ~ normal(mu, sigma);
@@ -277,13 +275,15 @@ model <- "
   }
 "
 
-#sim <- stan(model_code = model, iter = 5000*2, seed = 84735)
-#plot(sim)
+data = list(y=c(7.1,8.9,8.4,8.6))
+
+sim <- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)
+plot(sim)
 ```
 
 # Chapter 7
 
-## 7.7
+## 7.6
 
 a.  
 
@@ -292,7 +292,7 @@ current <- 4.6
 
 set.seed(84735)
 
-proposal <- runif(1, min = current - 2, max = current + 2)
+proposal <- rnorm(1, current, 2)
 proposal
 ```
 
@@ -303,7 +303,7 @@ current <- 2.1
 
 set.seed(84735)
 
-proposal <- runif(1, min = current - 7, max = current + 7)
+proposal <- rnorm(1, current, 7)
 proposal
 ```
 
@@ -347,10 +347,11 @@ a.
 ```{r}
 current <- 2
 proposal <- 2.1
+posterior <- function(lambda) {lambda^(-2)}
 
-proposal_plaus <- dnorm(proposal, 0, 1) 
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- dnorm(current, 0, 1) 
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -361,10 +362,11 @@ b.
 ```{r}
 current <- 2
 proposal <- 2.1
+posterior <- function(lambda) {exp(lambda)}
 
-proposal_plaus <- dnorm(proposal, 0, 2) 
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- dnorm(current, 0, 2) 
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -375,10 +377,11 @@ c.
 ```{r}
 current <- 2
 proposal <- 2.1
+posterior <- function(lambda) {exp(-10*lambda)}
 
-proposal_plaus <- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.5,0.5)
+proposal_plaus <- posterior(proposal) * dunif(1, min = current - 0.5, max = current + 0.5)
 
-current_plaus  <- dnorm(current, 0, 1) 
+current_plaus  <- posterior(current) * dunif(1, min = current - 0.5, max = current + 0.5)
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -389,12 +392,13 @@ d.
 ```{r}
 current <- 2
 proposal <- 2.1
+posterior <- function(lambda) {exp((-lambda)^4)} 
 
-proposal_plaus <- dnorm(proposal, 0, 4)
+proposal_plaus <- posterior(proposal) * dexp(current, rate = proposal)
 
-current_plaus  <- dnorm(current, 0, 4) 
+current_plaus  <- posterior(current) * dexp(proposal, rate = current)
 
-alpha <- min(1, proposal_plaus / current_plaus)
+alpha <- min(1, proposal_plaus / current_plaus) 
 alpha
 ```
 

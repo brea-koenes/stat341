@@ -530,7 +530,29 @@ bb_model &lt;- &quot;
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<pre><code>## 
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 9e-06 seconds
@@ -551,9 +573,9 @@ bb_model &lt;- &quot;
 ## Chain 1: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 7.43094 seconds (Warm-up)
-## Chain 1:                7.40247 seconds (Sampling)
-## Chain 1:                14.8334 seconds (Total)
+## Chain 1:  Elapsed Time: 7.15195 seconds (Warm-up)
+## Chain 1:                7.15491 seconds (Sampling)
+## Chain 1:                14.3069 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 2).
@@ -576,9 +598,9 @@ bb_model &lt;- &quot;
 ## Chain 2: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.61146 seconds (Warm-up)
-## Chain 2:                7.13895 seconds (Sampling)
-## Chain 2:                14.7504 seconds (Total)
+## Chain 2:  Elapsed Time: 7.3673 seconds (Warm-up)
+## Chain 2:                6.98019 seconds (Sampling)
+## Chain 2:                14.3475 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 3).
@@ -601,9 +623,9 @@ bb_model &lt;- &quot;
 ## Chain 3: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 7.08972 seconds (Warm-up)
-## Chain 3:                8.02237 seconds (Sampling)
-## Chain 3:                15.1121 seconds (Total)
+## Chain 3:  Elapsed Time: 6.99188 seconds (Warm-up)
+## Chain 3:                7.8179 seconds (Sampling)
+## Chain 3:                14.8098 seconds (Total)
 ## Chain 3:</code></pre>
 <pre><code>## Warning: There were 12000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -668,7 +690,29 @@ gp_model &lt;- &quot;
 # Simulate the posterior
 gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)), 
                chains = 4, iter = (10000*2)/4, seed = 84735)</code></pre>
-<pre><code>## 
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 8e-06 seconds
@@ -689,15 +733,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 4.10959 seconds (Warm-up)
-## Chain 1:                4.12618 seconds (Sampling)
-## Chain 1:                8.23577 seconds (Total)
+## Chain 1:  Elapsed Time: 4.059 seconds (Warm-up)
+## Chain 1:                4.03575 seconds (Sampling)
+## Chain 1:                8.09475 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 3e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+## Chain 2: Gradient evaluation took 5e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -714,9 +758,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 2: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 4.02396 seconds (Warm-up)
-## Chain 2:                4.23715 seconds (Sampling)
-## Chain 2:                8.26111 seconds (Total)
+## Chain 2:  Elapsed Time: 3.91019 seconds (Warm-up)
+## Chain 2:                4.15547 seconds (Sampling)
+## Chain 2:                8.06566 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 3).
@@ -739,9 +783,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 3: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 4.25906 seconds (Warm-up)
-## Chain 3:                4.16443 seconds (Sampling)
-## Chain 3:                8.42349 seconds (Total)
+## Chain 3:  Elapsed Time: 3.90236 seconds (Warm-up)
+## Chain 3:                3.90752 seconds (Sampling)
+## Chain 3:                7.80988 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 4).
@@ -764,9 +808,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 4: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 3.97858 seconds (Warm-up)
-## Chain 4:                4.50507 seconds (Sampling)
-## Chain 4:                8.48365 seconds (Total)
+## Chain 4:  Elapsed Time: 3.89786 seconds (Warm-up)
+## Chain 4:                4.3517 seconds (Sampling)
+## Chain 4:                8.24955 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 10000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -802,12 +846,10 @@ a posterior model.</p>
 model &lt;- &quot;
   data {
     real y[4];
-    y[1] = 7.1;  y[2] = 8.9;   y[3]  = 8.4; 
-    y[4] = 8.6;
   }
   parameters {
-    real&lt;lower=4, upper=16&gt; mu;
-    real&lt;lower=.1, upper=4&gt; sigma;
+    real mu;
+    real&lt;lower=0&gt; sigma;
   }
   model {
     y ~ normal(mu, sigma);
@@ -816,14 +858,144 @@ model &lt;- &quot;
   }
 &quot;
 
-#sim &lt;- stan(model_code = model, iter = 5000*2, seed = 84735)
-#plot(sim)</code></pre>
+data = list(y=c(7.1,8.9,8.4,8.6))
+
+sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</code></pre>
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
+## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 8e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 10000 [  0%]  (Warmup)
+## Chain 1: Iteration: 1000 / 10000 [ 10%]  (Warmup)
+## Chain 1: Iteration: 2000 / 10000 [ 20%]  (Warmup)
+## Chain 1: Iteration: 3000 / 10000 [ 30%]  (Warmup)
+## Chain 1: Iteration: 4000 / 10000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 5000 / 10000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 5001 / 10000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 6000 / 10000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 7000 / 10000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 8.4166 seconds (Warm-up)
+## Chain 1:                8.42328 seconds (Sampling)
+## Chain 1:                16.8399 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 4e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 10000 [  0%]  (Warmup)
+## Chain 2: Iteration: 1000 / 10000 [ 10%]  (Warmup)
+## Chain 2: Iteration: 2000 / 10000 [ 20%]  (Warmup)
+## Chain 2: Iteration: 3000 / 10000 [ 30%]  (Warmup)
+## Chain 2: Iteration: 4000 / 10000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 5000 / 10000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 5001 / 10000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 6000 / 10000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 7000 / 10000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 8.44139 seconds (Warm-up)
+## Chain 2:                8.75262 seconds (Sampling)
+## Chain 2:                17.194 seconds (Total)
+## Chain 2: 
+## 
+## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 3).
+## Chain 3: 
+## Chain 3: Gradient evaluation took 5e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+## Chain 3: Adjust your expectations accordingly!
+## Chain 3: 
+## Chain 3: 
+## Chain 3: Iteration:    1 / 10000 [  0%]  (Warmup)
+## Chain 3: Iteration: 1000 / 10000 [ 10%]  (Warmup)
+## Chain 3: Iteration: 2000 / 10000 [ 20%]  (Warmup)
+## Chain 3: Iteration: 3000 / 10000 [ 30%]  (Warmup)
+## Chain 3: Iteration: 4000 / 10000 [ 40%]  (Warmup)
+## Chain 3: Iteration: 5000 / 10000 [ 50%]  (Warmup)
+## Chain 3: Iteration: 5001 / 10000 [ 50%]  (Sampling)
+## Chain 3: Iteration: 6000 / 10000 [ 60%]  (Sampling)
+## Chain 3: Iteration: 7000 / 10000 [ 70%]  (Sampling)
+## Chain 3: Iteration: 8000 / 10000 [ 80%]  (Sampling)
+## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
+## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
+## Chain 3: 
+## Chain 3:  Elapsed Time: 8.18117 seconds (Warm-up)
+## Chain 3:                8.24399 seconds (Sampling)
+## Chain 3:                16.4252 seconds (Total)
+## Chain 3: 
+## 
+## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 4).
+## Chain 4: 
+## Chain 4: Gradient evaluation took 4e-06 seconds
+## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 4: Adjust your expectations accordingly!
+## Chain 4: 
+## Chain 4: 
+## Chain 4: Iteration:    1 / 10000 [  0%]  (Warmup)
+## Chain 4: Iteration: 1000 / 10000 [ 10%]  (Warmup)
+## Chain 4: Iteration: 2000 / 10000 [ 20%]  (Warmup)
+## Chain 4: Iteration: 3000 / 10000 [ 30%]  (Warmup)
+## Chain 4: Iteration: 4000 / 10000 [ 40%]  (Warmup)
+## Chain 4: Iteration: 5000 / 10000 [ 50%]  (Warmup)
+## Chain 4: Iteration: 5001 / 10000 [ 50%]  (Sampling)
+## Chain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)
+## Chain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)
+## Chain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)
+## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
+## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
+## Chain 4: 
+## Chain 4:  Elapsed Time: 8.98612 seconds (Warm-up)
+## Chain 4:                8.22386 seconds (Sampling)
+## Chain 4:                17.21 seconds (Total)
+## Chain 4:</code></pre>
+<pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
+<pre><code>## Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
+<pre class="r"><code>plot(sim)</code></pre>
+<pre><code>## ci_level: 0.8 (80% intervals)</code></pre>
+<pre><code>## outer_level: 0.95 (95% intervals)</code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAIAAAB7BESOAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nOzde3yV9Z3g8V9CboDhGi6CXC1WRFTwLr4q02FEbGuttnWdrjpdO9OxirYd3UoFa1tr0daiFus6nS69UOul2854gYXVYl2tiAUVpSi0WEQgxCRIgBACydk/MhtjREgCyck3vt9/nec5z3nON8p55fXJ85znyclkMgkAAADo3HKzPQAAAABwYAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAASQl+0BPrj+8Ic/vPHGGymlc845p0+fPtkeZx/Ky8tLSkqyPQXEUFtbu3v37uLi4mwPAjH4FQOt4iMDLbdjx478/PzCwsJsD9IuBHzW3H///Y899lhK6fjjj++cAb9hwwa/KqCFqqurKysrBTy0kF8x0Co+MtByFRUVxcXFXTXgnUIPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEIOABAAAgAAEPAAAAAQh4AAAACEDAAwAAQAACHgAAAAIQ8AAAABCAgAcAAIAABDwAAAAEkJftAQAAAFqk6sVVFU8tq9lYWrN5S05eXvcjDi8advjAs8/qPmJotkeDjiDgAQCATm1v1Y6/fP/eN3/xv6r/+uY+N+g9YdyIKy4Z/vnP5uQJHLoy/74BAIDOa/29v3x15vdqyyszKa1Jtc+nXWVpb3mqK0g5fVK34Sn/1NQ9vbBq5T9dv27Ov42fe3PJR8/I9sjQXgQ8AADQGdXX7nn5Sze88ZP7Myn9Lu38VaoqS3vfu9lP09tHpYLLUp/xq/+8dOp/HfeDWaOmf77jp4UOIOABAIBOJ1NX9/yn/rFswe8qU90tqXxNqt3PxmtS7Q2p7KOp55f29n3l6m/UVrz94Zu+0mGjQodxFXoAAKDT+dO/fLtswe82pD3/krbsv94b/S7t/Hoqq071a751x6YHHmnvCaHjCXgAAKBz2fLY79bd+T+rUv23UnlFqmv5C9ek2u+livpM5sXLr6vZWNp+E0JWdIVT6OfMmbNr166Gx8XFxdOnT6+trX344Yeffvrp0tLSlNLgwYNPP/30c889t7i4uGGzFStWLFq0aO3atVVVVSUlJUccccSZZ545efLk9+78vPPOa3x8+OGH33vvvc02qKio+Pzn3/mOzfjx47/zne8c0p8PAADa155t21N9fban+E+Zuro/XXdzSumuVLllX19637/lqebf0/YLdqbV188+9q5vtsOA7Su3qLBb96JsT0En1RUCfvny5VVVVQ2PS0pKysrKbrrppjfffOcOE+vWrVu3bt2iRYtmzpw5cuTIuXPnPv74443Pbtq0adOmTcuWLVu0aNGsWbN69OjR0T8AAABk1f898dydf1mf7SneZVXavSztattrH0xVf5d6vjn/N2/O/82hnaoDjJlx5dG3fC3bU9BJdbVT6Hft2jVz5sym9d6ovLx89uzZd955Z9N6b2rVqlXz5s1r5wEBAIAD+03a3ubXVqf6/512HMJhoJPoagG/c+fOhtPm96m0tHTJkiX7efnixYs3btzYDnMBAAAtVZMyL6Wag9nD0rYevYfOrCucQv9ekydPnjx5cp8+fVavXj1//vydO3c2fTY3N/f8888/+eSTCwoKli1b9tBDD9X//y/8ZDKZdevWDR06NBtTAwAAKaX0atpdmzIHs4c/p9rqVN+jyx2w5AOuCwb8tGnTrrjiiobHo0ePLiwsvOuuu5pu8MUvfnHatGkNj8eMGVNdXf3II+/cZOKNN95oj6l+9atfLViwoOmaDRs29OjRo7q6uj3eDgCAiBYsWHDjjTc2W1ldXd3e12m6+s2Kvu36Bq1U3porz+9TJqWKVBcx4OfNm/fE4oeyPUVbPPbYY4MGDcr2FF1cFwz4Cy+8sOniscce23SxR48eU6dObbpm3LhxTQO+8YL2h9Zbb721evXqZiu7deuWUlqzZs2ePXva400PUnl5+cqVK7M9BcRQU1NTU1OzY4ev20GL+BUD7+fFF19cvnx5x7/v7nR4p0qDqnQILom/LdUPO/i9dLjS0tLlpduyPUVbvPTSS4MHD872FKmqqqqgoKCoKMyV/I844oh+/fq1cONO9Ck9JAoKCgYMGNB0TX5+ftPFIUOG5ObmNntJR0z2/o466qixY8dmd4Z9euGFF4477rhsTwExvP3225WVlaNHj872IBCDXzHwfl566aVsj9Ap9Ew5B7+TwwIefg9t7Nixw4Zl/28m69evLy4ubnkSx9LV/k0XFRXl5Ozv0969e/cOG6apq6+++o/vdsYZZ2zf3vZLawIA0PVccsklmfdYsWLFe1ceWkceeWS2f/R36Ze6dZKddLwZM2a09//udtIZ6r3L62oBDwAARHdUKjzIUBma8nqJHboc/6YBAIDOpXfKHZsKD2YPp6X2vewfZIWAb4W6un1cDNNl5AEA4JD7WDqsza/NSzlTU89DOAx0El3tInaHXLdu3Rq7vbKyMpPJNPuO/dq1a7MxFwAAHDIn/GxO3a6abE/xn+p3737xsq9Oqkhj0va1qbYNe5iWDhuc8vqcMuHo71x3yMdrbz1GHpHtEei8BPwBDBo0aNOmTQ2P9+7d+4c//GHSpEmNz1ZXV993331ZGg0AAA6NfpNOyvYI73L0d7+28p+u/2rqf23asrOVt5QblvI/l3rl5OYef+8tvU4Y104TQlYI+AMYOnRoY8CnlH74wx9WVlYec8wxmUxm7dq1Dz30UHl5eRbHAwCArmf45f9ly38sTo/97rrU/5ZUXpsyLXxhv9TtxlTSI+V++JtfVe90PQL+AMaOHfv88883LlZXV//4xz/O4jwAANDl5eTmTvzV3KfP+NTEV167LQ28OZWXp31cjqqZ0anghlQyIHU7/MJzx9wwvQPmhA7mInYHcM455/Tr128/Gxx//PEdNgwAAHxA5BUfdsaSB/qfddroVHBnGnxh6lWQct5v4+KUe1nq/b00cEDqNvRzn5o4/86U874bQ1wC/gAOO+ywmTNn9u3bd5/PfvSjH73qqqs6eCQAAPggKCjpd9qi+SOvvKxXt/zLUu8fp8OvTH1PSd2HpfyeKbdP6jYq5f9N6vm11P8naciFqVf34uLxc789cf6duUUHdQs66LScQn9gH/rQh+bOnbtgwYJXX311w4YNW7du7d2794c//OGzzz57woQJ27dvP/nkkxs3HjFiRBZHBQCAriS3sGD83G+PvOKSV2+4LefRJ6bWdZu6r9vLdevZY/jnP3vUjdcUDOjf8UNCh+kKAT9//vz9PNu/f/+HH354PxucdNJJ+98gpVRcXHzRRRe931OzZs064JAAAEDbFI876uR//7faiq1bHn2i8qnndm0srdlYmpufVzR0cPcRRwycelbJlDO7dS/K9pjQ7rpCwAMAAF1eQf++wy779LDLPp3tQSBrfAceAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAsjL9gAQVWbv3p1/Wb97S3ltWUVer8OKhgzqPmJoXvFh2Z4LAADomjo04OfOnbt48eLGxVtvvXXs2LEdOQAcApnMlkef2PTgo1sW/G5P5dtNn8ktyO8/+fTDP3XOEZdc0K1nj2wNCAAAdEmOwEMrVDz57J/++y1vP/9SSqk2Zdam2rdS3duprjjl9kndxtTW1y9+6q3FT6351h1H3fTV4ZdflNOtW7ZHBgAAuggBDy2Tybx205w1374zZTJ/TrW/Sdv/mHbVpEzTTXJTOiYVTkuHnbm5bOUXr9/8m4Un3n93fp9e2RoZAADoSgQ8HFimrm7F567e9MAj1an+f6Stv0/VmX1tVp/SK2n3K2n3b9P2a1K/tOj3T5/+ydOfuL9oyKCOnhgAAOhyOvQq9L169Tq8ifz8/I58d2iz1V/77qYHHilNe69LZU++T7039edU+9/TlufTrh2v/uX5879Qt6umI6YEAAC6tA49An/ppZdeeumlHfmOcPA2PfDIX27/1+2p/sb0Vmna28JX7UqZ76aKm9OAY55/6ZXpNx7/b7e165AAAECX1/aAr6+vX758+XPPPbd58+bS0tJt27YNGDBg0KBBgwcPPv3004877ricnJxmL7nllluWLl3auDh37tzhw4e/d89bt25duHDhc889V1pampeXN3z48GnTpn3kIx9JKd1zzz1bt25t2GzEiBGf+9znGl81Z86cXbt2NTwuLi6ePn16bW3tww8//PTTT5eWlqaUGgY799xzi4uLGzZbsWLFokWL1q5dW1VVVVJScsQRR5x55pmTJ09+vx+5pqbm6aeffumll8rKyt56662qqqo+ffqUlJQMHDhw8uTJEydObP1/RTq7+prdf7ruO5mUbksVLa/3BntT5rup/K40OGfegyO/dGnvice205AAAMAHQRsDfsOGDbfffvu6deuarty4cePGjRtTSgsWLDjqqKOuueaaYcOGtXbPTz311I9+9KPq6urGNatWrVq1atWyZcu+/OUvv/jii5s3b25Yv3PnzqYvXL58eVVVVcPjkpKSsrKym2666c0332zcYN26devWrVu0aNHMmTNHjhw5d+7cxx9/vPHZTZs2bdq0admyZYsWLZo1a1aPHs3vAbZixYo777yz8c8HDcrKysrKyv70pz89+eSTI0aMuPLKK48++ujW/si0h6Vnf6723fd4a5vdW8pr3ty8NO16KbXlNPhtqf7+VHVFfd8//M1ne44ZdfDzdJjDxoya+Ku52Z4CAAB4R1sCfvPmzTNmzGis5X1as2bN9ddfP3v27FY1/JNPPjlnzpxMZh9fMX7qqad69uzZwv3s2rVr5syZDQfemykvL589e/bYsWOXLFmyz9euWrVq3rx5V155ZdOVL7/88s0337x37/4OwK5fv/7GG2+86667Bg8e3MI5aT9VK1fv3lJ+qPZ2X9rW5tcuTjsuTMUDq3ZsW/7yoZqnA2T2tO50AwAAoL215SJ29957b7N6b7g6Xffu3Zuu3L59+1133dXy3ZaWlt599937rPcGCxcuLCsra8mudu7cuc96b3yj96v3BosXL244laBBJpOZO3dus3rPycnp3r17s68J1NTU3H///S2ZkEDeSHvWpz1tfnldSs+mXYdwHgAA4IOp1UfgKysrX3jhhcbFvn37zpgxo/G88ZUrV95+++2N55m/9tpr69atGz16dEv2PG/evN27d78zWV7e3//935900kmZTOaFF1647777amtr6+rqWj7q5MmTJ0+e3KdPn9WrV8+fP7/ZKfe5ubnnn3/+ySefXFBQsGzZsoceeqi+vr7hqUwms27duqFDhzYsbtiwofG8/ZTS4MGDr7nmmrFjx+bm5tbW1i5ZsuSee+5pfO3y5ctbPiEh/LFNJ88328MnU/EhGQYAAPjAanXA//Wvf216kPyUU05p+q3v44477rLLLrvjjjsa16xZs6YlAV9eXv7cc881Lubk5HzjG984/vjjGxZHjRo1fvz4r3/9600Lf/+mTZt2xRVXNDwePXp0YWFhs9MBvvjFL06bNq3h8ZgxY6qrqx955JHGZ994443GxxguUqQAABntSURBVKtWrWr6wi984Qvjxo1reFxQUDB16tQnnnji1VdfbVizbdu2vXv35uU1/w/7zDPPrFixouma9evXFxYWtvwnoqlZs2bt2bO/o+Kn7NhxqO5SuOkgDr832NzKq991Bps3b77++uuzPUXbDR06dPr06dmeAgAADqVWB3yzM8mfffbZsWPHnnnmmQUFBQ1rTjvttJtuuqlxgyFDhrRkt8uXL288iJ1SOuWUUxrrvcGYMWPOPffc3/72ty2c88ILL2y6eOyx77oAeI8ePaZOndp0zbhx45oGfOMF7VNKI0aM+NKXvtS4eNxxxzV9YV1d3VtvvdV0zT4Dfvny5T//+c+brSwoKNi9e/ebb75ZWFh4wJ+o423btq3ZdQo7j+9///s1Nfs7MP7zNKRP6nZI3uvtVH/gjfarMtVlUmp+V4bO7a233rr11luzPUXbjRs37mMf+1hHvmN1dXWz03yA/ejMv2KgE/KRgZarqKioqqp6++1DcEHrjjFgwIDGG6UdUKsDvqSkpOliVVXVHXfc8aMf/Wj8+PETJ06cOHHi0KFD23BDtdWrVzddnDJlynu3+fjHP97CgC8oKBgwYEDTNfn57zocO2TIkNzc3GYveb+9HXPMMcccc0zTNfX19Zs3b37jjTf++te/Llu2rKKioiVTvZ9evXr17dv3YPbQTsrKyjrnYB3s4P8M0C1avXcBeXl5Hfyvt+HPdj4y0EJ+xUCr+MhAy9XU1PTs2bNXr17ZHqSl9pOi79XqgB89evTYsWOb9XZtbe3y5csbvv49cODAE0888dRTT50wYcJ7bwX/fsrL33XB8H0etx8wYEBRUdH+j7s2KCoq2v9bN7veXktkMpmVK1e++OKLK1euXL9+fW1tbatePm3atGZ/BZg3b94f//jH1IkDvrCwsHMOllL65S9/uf8LIhT+4zfSth2H5L36HXTCH/weOt6IESMe/F4rLkLZ2fTt27eD//Xm5OTs3bu3035koLPpzL9ioBPykYGWq6qqKi4u7qofmbbcRm7WrFl33nln06+sN1VWVrZw4cKFCxc2XOyt8evi+7djx7taq1+/fvvcbMCAARs2bGjtwAfv9ddfnzt37tq1a9u8hzFjxowZM6bpmocffnj/96VjPy644IL9b7B4+nd3H6KAH5YO9tv0B7+Hjte7d++zPvOZbE8BAAC8oy23kTvssMNuuOGGu++++5Of/GSzM9WbKi0tnTVr1po1a1qyz2anDWzfvn2fm2Xlmwxbt279+te/3qzee/fuPXHixIsuumj27Nlt+MoAQWRSSqem7gd5AvxpqdVnfAAAADTTliPwDYYNG3b55Zdffvnlr7/++rJly5YtW/bnP/+52V3c9+7dO3/+/G9961sH3Fuzb+2XlpYOHjy42TY7dux4v7BvVz/72c+aXptq0qRJF1988fDhwxvXVFVVdfxUdIiclFL/1O3YVPhyauP9ArqnnFMFPAAAcNBaHfAbN25sfJyfnz9w4MBRo0aNGjXqoosu2rp169KlSx999NGmZ7m38Aj8yJEjn3/++cbFp5566oQTTmi2zeOPP97aaQ+J1157rfFxcXHxtdde263bO19p3rt376ZNm7IxF/tzxCUX7q06BH/u2bn29fIlz16S+nwtbckcePN9+FTqVZxye44ZWfI3Zxz8PB2maGjzv6ABAADZ1eqAv/7667dt29bwuKio6Oc//3lRUVHDYt++fadNmzZlypRLL7208ZD17t27M5nMAa9mN27cuIceeqhxccmSJR//+Meb3kC+tLS06QYdJpPJlJaWNi4WFhY2rfeU0oIFC6qrqzt8Lg7gmO/dcEj2k6mvf+rEjx394qq/Sz0Xp1bfJGx4yj8/FecWFZ7+f37VfcTQQzISAADwwdTq78AfeeSRjY9ramrmzJnT9HvpO3bs+P3vf9/0hPPBgwe35Fr0J5xwQtOv09fV1c2YMWPhwoUNd2tbsGDBV77ylaycP5+Tk9O/f//GxfLy8gceeKDhEvTbtm379a9//dOf/rTjp6LD5OTmjv/ht3Lz8/459T0mFbbqtcUpd2YqKUo5R90wXb0DAAAHqdVH4KdOnbpixYrGxWeffXbp0qUDBgwoLCysqKh477HoM85o0WnDubm5F1988V13vXPbql27dt1zzz2tHa89jB49uqysrHHxl7/85X333de9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yZMbGhp+/vnnHhoLQdXU1AwePHjy5MknbP/tt99SSmVlZZ2MzZ0y1dXVW7Zs+eqrr3I3wDv//PNvuOGG3B96oY/pzjFviYGU0meffbZ58+Z58+Z1fvF8ssRQAKZPnz59+vTc1xs3bjx69GjHfQozbQR8YTl06FBKqeOdFXP/1x8+fLiHxkJQM2fO7Lgxm82uXLkypTR16tROxu7bty+l9N13323cuLF9Y0NDw0cffbRgwYKrr776dE8W8qw7x7wlBlpaWl5//fWKioqTLj0nsMRAKtS0EfCFJfdxjvLy8hO2DxkyJP33OO6JsdBnHDp06NFHH92+fXtlZeUtt9zSyZ65367a2trq6uqmTZtWUVHx008/rVy5ctOmTc8+++z555/vGT/0Md055i0x8P777x8+fPj+++/vyi3oLDGQCjVtfAa+EHW8tcnx48dTSseOHevRsRBaS0vLihUr7r777u3bt48ZM2bx4sWdPyZ04sSJd9xxx6OPPlpbW1tdXT1w4MBx48YtXLjwkksuyWazb7311hmbOZwZ3T/mLTEUrEOHDn344Yfnnnvudddd15X9LTHQrtDSRsAXloqKivTfj+/+XW7LiBEjemgsRLdhw4a77rrrzTff7NevX11d3bPPPnv22Wd3PmTq1KkzZ86cMGHCCdtz10bu2LGjp+YKedKdY94SQ4Fbu3ZtNpu98cYbu3gDeUsMpEJNG5fQF5YRI0bs3bu3qanphO25LSNHjuyhsRBXNpt9+umnGxoaiouLa2trZ82aNXjw4O58w9xljY2NjcePH/ekHwpBV455SwyF7NixY+vWrSspKbn22mu7+a0sMRSUwkwb78AXlnPOOSel9MMPP5ywfdu2bSmlqqqqHhoLQbW2tj7++OMNDQ2jR49+6qmn6urquljvLS0tq1atWr16de5CrL/Lfaqqurrar1b0Jd085i0xFLL169cfOXLkqquu6vzhJu0sMZBTmGkj4AvLf/7zn5TShg0b2tra2jdms9nNmzf369ev/VENp30sBPX1119v2bJlwoQJS5cuHTt2bNcHlpaWrlmz5pVXXvnuu+9OeOmbb75JKY0bN+50ThTyrZvHvCWGQvbpp5+mlK655pou7m+JgZzCTBsBX1jGjx9fU1Ozf//+l156qf0ODU8++WRzc/Pll19+1llnte+5evXqVatW7dy5838YC33Gxx9/nFKaM2dOJpM52sHfb3DS8ZS56aabUkrPPffc999/n9uSzWbffffdjz/+eNCgQXPnzj2zPwr0uK4f85YYaNfc3Lxt27ZMJjNx4sRT7WOJgZMqzLTJdLz2hr5t165dDz/88J9//jl48ODRo0fv3r27paVlxIgRS5YsqaysbN+ttrY2m83Onz9/9uzZ/3Ys9A2tra21tbWtra2n2qGqquqVV17Jfd3xlDl+/PiSJUvWr1+fUiovLx80aFBjY2NbW1tZWdl99903bdq0M/AjwJnU9WPeEgPtNmzY8MQTT9TU1CxduvRU+1hiKHC33357U1NTfX19x1sIF2DauIldwRk7duxzzz33zjvvbN26dceOHcOHD58xY8att97a+QOxuj8WwmlsbOyk3v9RJpN58MEHr7jiirVr1+7bt+/IkSM1NTUXXnjhnDlzhg8ffhrnCb1EN495SwyFKXcZ/KRJk/7VKEsM5BRg2ngHHgAAAALwGXgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEICABwAAgAAEPAAAAAQg4AEAACAAAQ8AAAABCHgAAAAIQMADAABAAAIeAAAAAhDwAAAAEMD/AWhAlDZWLhmRAAAAAElFTkSuQmCC" width="672" /></p>
 </div>
 </div>
 <div id="chapter-7" class="section level1">
 <h1>Chapter 7</h1>
 <div id="section-4" class="section level2">
-<h2>7.7</h2>
+<h2>7.6</h2>
 <ol style="list-style-type: lower-alpha">
 <li></li>
 </ol>
@@ -831,9 +1003,9 @@ model &lt;- &quot;
 
 set.seed(84735)
 
-proposal &lt;- runif(1, min = current - 2, max = current + 2)
+proposal &lt;- rnorm(1, current, 2)
 proposal</code></pre>
-<pre><code>## [1] 5.590753</code></pre>
+<pre><code>## [1] 5.934465</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
@@ -841,9 +1013,9 @@ proposal</code></pre>
 
 set.seed(84735)
 
-proposal &lt;- runif(1, min = current - 7, max = current + 7)
+proposal &lt;- rnorm(1, current, 7)
 proposal</code></pre>
-<pre><code>## [1] 5.567636</code></pre>
+<pre><code>## [1] 6.770629</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
@@ -882,53 +1054,57 @@ proposal</code></pre>
 </ol>
 <pre class="r"><code>current &lt;- 2
 proposal &lt;- 2.1
+posterior &lt;- function(lambda) {lambda^(-2)}
 
-proposal_plaus &lt;- dnorm(proposal, 0, 1) 
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- dnorm(current, 0, 1) 
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
-<pre><code>## [1] 0.8146473</code></pre>
+<pre><code>## [1] 0.9070295</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
 <pre class="r"><code>current &lt;- 2
 proposal &lt;- 2.1
+posterior &lt;- function(lambda) {exp(lambda)}
 
-proposal_plaus &lt;- dnorm(proposal, 0, 2) 
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- dnorm(current, 0, 2) 
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
-<pre><code>## [1] 0.9500411</code></pre>
+<pre><code>## [1] 1</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
 <pre class="r"><code>current &lt;- 2
 proposal &lt;- 2.1
+posterior &lt;- function(lambda) {exp(-10*lambda)}
 
-proposal_plaus &lt;- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.5,0.5)
+proposal_plaus &lt;- posterior(proposal) * dunif(1, min = current - 0.5, max = current + 0.5)
 
-current_plaus  &lt;- dnorm(current, 0, 1) 
+current_plaus  &lt;- posterior(current) * dunif(1, min = current - 0.5, max = current + 0.5)
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] NaN</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
 <pre class="r"><code>current &lt;- 2
 proposal &lt;- 2.1
+posterior &lt;- function(lambda) {exp((-lambda)^4)} 
 
-proposal_plaus &lt;- dnorm(proposal, 0, 4)
+proposal_plaus &lt;- posterior(proposal) * dexp(current, rate = proposal)
 
-current_plaus  &lt;- dnorm(current, 0, 4) 
+current_plaus  &lt;- posterior(current) * dexp(proposal, rate = current)
 
-alpha &lt;- min(1, proposal_plaus / current_plaus)
+alpha &lt;- min(1, proposal_plaus / current_plaus) 
 alpha</code></pre>
-<pre><code>## [1] 0.9872692</code></pre>
+<pre><code>## [1] 1</code></pre>
 <ol start="5" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
