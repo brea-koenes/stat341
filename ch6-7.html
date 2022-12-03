@@ -530,33 +530,11 @@ bb_model &lt;- &quot;
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<pre><code>## Trying to compile a simple C file</code></pre>
-<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
-## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
-##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
-##  namespace Eigen {
-##  ^~~~~~~~~
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
-##  namespace Eigen {
-##                  ^
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
-##  #include &lt;complex&gt;
-##           ^~~~~~~~~
-## compilation terminated.
-## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
-## make: *** [foo.o] Error 1
-## 
+<pre><code>## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 9e-06 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
+## Chain 1: Gradient evaluation took 1.4e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -573,9 +551,9 @@ bb_model &lt;- &quot;
 ## Chain 1: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 7.15195 seconds (Warm-up)
-## Chain 1:                7.15491 seconds (Sampling)
-## Chain 1:                14.3069 seconds (Total)
+## Chain 1:  Elapsed Time: 7.38485 seconds (Warm-up)
+## Chain 1:                7.2844 seconds (Sampling)
+## Chain 1:                14.6692 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 2).
@@ -598,15 +576,15 @@ bb_model &lt;- &quot;
 ## Chain 2: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.3673 seconds (Warm-up)
-## Chain 2:                6.98019 seconds (Sampling)
-## Chain 2:                14.3475 seconds (Total)
+## Chain 2:  Elapsed Time: 7.46881 seconds (Warm-up)
+## Chain 2:                7.02431 seconds (Sampling)
+## Chain 2:                14.4931 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 6e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+## Chain 3: Gradient evaluation took 7e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -623,9 +601,9 @@ bb_model &lt;- &quot;
 ## Chain 3: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 6.99188 seconds (Warm-up)
-## Chain 3:                7.8179 seconds (Sampling)
-## Chain 3:                14.8098 seconds (Total)
+## Chain 3:  Elapsed Time: 7.0921 seconds (Warm-up)
+## Chain 3:                7.93886 seconds (Sampling)
+## Chain 3:                15.031 seconds (Total)
 ## Chain 3:</code></pre>
 <pre><code>## Warning: There were 12000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -690,29 +668,7 @@ gp_model &lt;- &quot;
 # Simulate the posterior
 gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)), 
                chains = 4, iter = (10000*2)/4, seed = 84735)</code></pre>
-<pre><code>## Trying to compile a simple C file</code></pre>
-<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
-## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
-##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
-##  namespace Eigen {
-##  ^~~~~~~~~
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
-##  namespace Eigen {
-##                  ^
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
-##  #include &lt;complex&gt;
-##           ^~~~~~~~~
-## compilation terminated.
-## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
-## make: *** [foo.o] Error 1
-## 
+<pre><code>## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 8e-06 seconds
@@ -733,9 +689,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 4.059 seconds (Warm-up)
-## Chain 1:                4.03575 seconds (Sampling)
-## Chain 1:                8.09475 seconds (Total)
+## Chain 1:  Elapsed Time: 4.08672 seconds (Warm-up)
+## Chain 1:                4.07641 seconds (Sampling)
+## Chain 1:                8.16312 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 2).
@@ -758,9 +714,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 2: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 3.91019 seconds (Warm-up)
-## Chain 2:                4.15547 seconds (Sampling)
-## Chain 2:                8.06566 seconds (Total)
+## Chain 2:  Elapsed Time: 3.94934 seconds (Warm-up)
+## Chain 2:                4.19107 seconds (Sampling)
+## Chain 2:                8.14041 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 3).
@@ -783,15 +739,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 3: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 3.90236 seconds (Warm-up)
-## Chain 3:                3.90752 seconds (Sampling)
-## Chain 3:                7.80988 seconds (Total)
+## Chain 3:  Elapsed Time: 3.93277 seconds (Warm-up)
+## Chain 3:                3.97025 seconds (Sampling)
+## Chain 3:                7.90302 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 4).
 ## Chain 4: 
-## Chain 4: Gradient evaluation took 4e-06 seconds
-## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 4: Gradient evaluation took 3e-06 seconds
+## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 4: Adjust your expectations accordingly!
 ## Chain 4: 
 ## Chain 4: 
@@ -808,9 +764,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 4: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 3.89786 seconds (Warm-up)
-## Chain 4:                4.3517 seconds (Sampling)
-## Chain 4:                8.24955 seconds (Total)
+## Chain 4:  Elapsed Time: 3.95476 seconds (Warm-up)
+## Chain 4:                4.42322 seconds (Sampling)
+## Chain 4:                8.37798 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 10000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -861,33 +817,11 @@ model &lt;- &quot;
 data = list(y=c(7.1,8.9,8.4,8.6))
 
 sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</code></pre>
-<pre><code>## Trying to compile a simple C file</code></pre>
-<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
-## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
-##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
-##  namespace Eigen {
-##  ^~~~~~~~~
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
-##  namespace Eigen {
-##                  ^
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
-##  #include &lt;complex&gt;
-##           ^~~~~~~~~
-## compilation terminated.
-## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
-## make: *** [foo.o] Error 1
-## 
+<pre><code>## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 8e-06 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+## Chain 1: Gradient evaluation took 7e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -904,15 +838,15 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.4166 seconds (Warm-up)
-## Chain 1:                8.42328 seconds (Sampling)
-## Chain 1:                16.8399 seconds (Total)
+## Chain 1:  Elapsed Time: 8.34216 seconds (Warm-up)
+## Chain 1:                8.37314 seconds (Sampling)
+## Chain 1:                16.7153 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 3e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -929,15 +863,15 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 8.44139 seconds (Warm-up)
-## Chain 2:                8.75262 seconds (Sampling)
-## Chain 2:                17.194 seconds (Total)
+## Chain 2:  Elapsed Time: 8.14185 seconds (Warm-up)
+## Chain 2:                8.58398 seconds (Sampling)
+## Chain 2:                16.7258 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 5e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+## Chain 3: Gradient evaluation took 3e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -954,15 +888,15 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 8.18117 seconds (Warm-up)
-## Chain 3:                8.24399 seconds (Sampling)
-## Chain 3:                16.4252 seconds (Total)
+## Chain 3:  Elapsed Time: 8.10973 seconds (Warm-up)
+## Chain 3:                8.39738 seconds (Sampling)
+## Chain 3:                16.5071 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 4).
 ## Chain 4: 
-## Chain 4: Gradient evaluation took 4e-06 seconds
-## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 4: Gradient evaluation took 3e-06 seconds
+## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 4: Adjust your expectations accordingly!
 ## Chain 4: 
 ## Chain 4: 
@@ -979,9 +913,9 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 8.98612 seconds (Warm-up)
-## Chain 4:                8.22386 seconds (Sampling)
-## Chain 4:                17.21 seconds (Total)
+## Chain 4:  Elapsed Time: 8.97683 seconds (Warm-up)
+## Chain 4:                8.15006 seconds (Sampling)
+## Chain 4:                17.1269 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -1084,13 +1018,13 @@ alpha</code></pre>
 proposal &lt;- 2.1
 posterior &lt;- function(lambda) {exp(-10*lambda)}
 
-proposal_plaus &lt;- posterior(proposal) * dunif(1, min = current - 0.5, max = current + 0.5)
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- posterior(current) * dunif(1, min = current - 0.5, max = current + 0.5)
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
-<pre><code>## [1] NaN</code></pre>
+<pre><code>## [1] 0.3678794</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
@@ -1108,11 +1042,12 @@ alpha</code></pre>
 <ol start="5" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<p>The scenario with the uniform distribution has an acceptance
-probability of 1, which we automatically accept.</p>
-<p>When a proposal is close to the current location, they will have a
-similar posterior plausibility and will most likely be accepted; that is
-why so many of the acceptance probabilities above are high.</p>
+<p>b and d are 1. The min function sets that any ratio (proposal
+plausibility to current plausibility) above 1 is 1; 1 is the cieling.
+This is because 1 signifies the probability that we are going to accept
+the proposed location, which cannot be higher than 100%. In other words,
+1 means that there is a 100% probability of accepting the proposed
+location.</p>
 </div>
 <div id="section-6" class="section level2">
 <h2>7.8</h2>
@@ -1121,10 +1056,11 @@ why so many of the acceptance probabilities above are high.</p>
 </ol>
 <pre class="r"><code>current &lt;- 1.8
 proposal &lt;- 1.6
+posterior &lt;- function(lambda) {lambda^(-1)}
 
-proposal_plaus &lt;- dnorm(proposal, 0, 2)
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- dnorm(current, 0, 2) 
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
@@ -1134,23 +1070,25 @@ alpha</code></pre>
 </ol>
 <pre class="r"><code>current &lt;- 1.8
 proposal &lt;- 1.6
+posterior &lt;- function(lambda) {exp(3*lambda)}
 
-proposal_plaus &lt;- dnorm(proposal, 0, .5)
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- dnorm(current, 0, .5) 
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 0.5488116</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
 <pre class="r"><code>current &lt;- 1.8
 proposal &lt;- 1.6
+posterior &lt;- function(lambda) {exp(((-1.9)*lambda))}
 
-proposal_plaus &lt;- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.3,0.3)
+proposal_plaus &lt;- posterior(proposal) 
 
-current_plaus  &lt;- dnorm(current, 0, 1) 
+current_plaus  &lt;- posterior(current) 
 
 alpha &lt;- min(1, proposal_plaus / current_plaus)
 alpha</code></pre>
@@ -1160,19 +1098,22 @@ alpha</code></pre>
 </ol>
 <pre class="r"><code>current &lt;- 1.8
 proposal &lt;- 1.6
+posterior &lt;- function(lambda) {exp((-lambda)^4)} 
 
-proposal_plaus &lt;- dnorm(proposal, 0, 4)
+proposal_plaus &lt;- posterior(proposal) * dexp(current, rate = proposal)
 
-current_plaus  &lt;- dnorm(current, 0, 4) 
+current_plaus  &lt;- posterior(current) * dexp(proposal, rate = current)
 
-alpha &lt;- min(1, proposal_plaus / current_plaus)
+alpha &lt;- min(1, proposal_plaus / current_plaus) 
 alpha</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 0.01721829</code></pre>
 <ol start="5" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<p>They are all 100% acceptance probability, maybe becuase the chain has
-already been at that location so it must have already been accepted.</p>
+<p>a and c are 100% acceptance probability. We would certainly want to
+accept the proposed location in these scenarios becaused the proposed
+plausability is better than the current plausibility. This means the
+proposed value makes a better posterior than the current one.</p>
 </div>
 <div id="section-7" class="section level2">
 <h2>7.10</h2>

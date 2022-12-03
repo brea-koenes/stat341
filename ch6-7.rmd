@@ -379,9 +379,9 @@ current <- 2
 proposal <- 2.1
 posterior <- function(lambda) {exp(-10*lambda)}
 
-proposal_plaus <- posterior(proposal) * dunif(1, min = current - 0.5, max = current + 0.5)
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- posterior(current) * dunif(1, min = current - 0.5, max = current + 0.5)
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -404,9 +404,7 @@ alpha
 
 e.  
 
-The scenario with the uniform distribution has an acceptance probability of 1, which we automatically accept.
-
-When a proposal is close to the current location, they will have a similar posterior plausibility and will most likely be accepted; that is why so many of the acceptance probabilities above are high.
+b and d are 1. The min function sets that any ratio (proposal plausibility to current plausibility) above 1 is 1; 1 is the cieling. This is because 1 signifies the probability that we are going to accept the proposed location, which cannot be higher than 100%. In other words, 1 means that there is a 100% probability of accepting the proposed location.
 
 ## 7.8
 
@@ -415,10 +413,11 @@ a.
 ```{r}
 current <- 1.8
 proposal <- 1.6
+posterior <- function(lambda) {lambda^(-1)}
 
-proposal_plaus <- dnorm(proposal, 0, 2)
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- dnorm(current, 0, 2) 
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -429,10 +428,11 @@ b.
 ```{r}
 current <- 1.8
 proposal <- 1.6
+posterior <- function(lambda) {exp(3*lambda)}
 
-proposal_plaus <- dnorm(proposal, 0, .5)
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- dnorm(current, 0, .5) 
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -443,10 +443,11 @@ c.
 ```{r}
 current <- 1.8
 proposal <- 1.6
+posterior <- function(lambda) {exp(((-1.9)*lambda))}
 
-proposal_plaus <- dnorm(proposal, 0, 1) * bayestestR::distribution_uniform(-0.3,0.3)
+proposal_plaus <- posterior(proposal) 
 
-current_plaus  <- dnorm(current, 0, 1) 
+current_plaus  <- posterior(current) 
 
 alpha <- min(1, proposal_plaus / current_plaus)
 alpha
@@ -457,18 +458,19 @@ d.
 ```{r}
 current <- 1.8
 proposal <- 1.6
+posterior <- function(lambda) {exp((-lambda)^4)} 
 
-proposal_plaus <- dnorm(proposal, 0, 4)
+proposal_plaus <- posterior(proposal) * dexp(current, rate = proposal)
 
-current_plaus  <- dnorm(current, 0, 4) 
+current_plaus  <- posterior(current) * dexp(proposal, rate = current)
 
-alpha <- min(1, proposal_plaus / current_plaus)
+alpha <- min(1, proposal_plaus / current_plaus) 
 alpha
 ```
 
 e.  
 
-They are all 100% acceptance probability, maybe becuase the chain has already been at that location so it must have already been accepted.
+a and c are 100% acceptance probability. We would certainly want to accept the proposed location in these scenarios becaused the proposed plausability is better than the current plausibility. This means the proposed value makes a better posterior than the current one.
 
 ## 7.10
 
