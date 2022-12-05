@@ -2,7 +2,9 @@
 title: "ch6-7.rmd"
 author: "Brea Koenes"
 date: "10/24/2022"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -404,7 +406,7 @@ alpha
 
 e.  
 
-b and d are 1. The min function sets that any ratio (proposal plausibility to current plausibility) above 1 is 1; 1 is the cieling. This is because 1 signifies the probability that we are going to accept the proposed location, which cannot be higher than 100%. In other words, 1 means that there is a 100% probability of accepting the proposed location.
+b and d are 1. The min function sets that any ratio (proposal plausibility to current plausibility) above 1 is 1; 1 is the ceiling. This is because 1 signifies the probability that we are going to accept the proposed location, which cannot be higher than 100%. In other words, 1 means that there is a 100% probability of accepting the proposed location.
 
 ## 7.8
 
@@ -470,11 +472,9 @@ alpha
 
 e.  
 
-a and c are 100% acceptance probability. We would certainly want to accept the proposed location in these scenarios becaused the proposed plausability is better than the current plausibility. This means the proposed value makes a better posterior than the current one.
+a and c are 100% acceptance probability. We would certainly want to accept the proposed location in these scenarios because the proposed plausibility is better than the current plausibility. This means the proposed value makes a better posterior than the current one.
 
 ## 7.10
-
-a.  
 
 ```{r}
 one_mh_iteration <- function(w, current){
@@ -517,6 +517,8 @@ mh_tour <- function(N, w){
   return(data.frame(iteration = c(1:N), mu))
 }
 ```
+
+a.
 
 ```{r}
 set.seed(84735)
@@ -531,100 +533,16 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
 b.  
 
 ```{r}
-one_mh_iteration <- function(w, current){
- # STEP 1: Propose the next chain location
- proposal <- runif(1, min = current - w, max = current + w)
-  
- # STEP 2: Decide whether or not to go there
- proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
- current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
- alpha <- min(1, proposal_plaus / current_plaus)
- next_stop <- sample(c(proposal, current), 
-                     size = 1, prob = c(alpha, 1-alpha))
-  
- # Return the results
- return(data.frame(proposal, alpha, next_stop))
-}
-```
-
-```{r}
-mh_tour <- function(N, w){
-  # 1. Start the chain at location 3
-  current <- 3
-
-  # 2. Initialize the simulation
-  mu <- rep(0, N)
-
-  # 3. Simulate N Markov chain stops
-  for(i in 1:N){    
-    # Simulate one iteration
-    sim <- one_mh_iteration(w = w, current = current)
-    
-    # Record next location
-    mu[i] <- sim$next_stop
-    
-    # Reset the current location
-    current <- sim$next_stop
-  }
-  
-  # 4. Return the chain locations
-  return(data.frame(iteration = c(1:N), mu))
-}
-```
-
-```{r}
 set.seed(84735)
-mh_simulation_1 <- mh_tour(N = 50, w = 0.1)
+mh_simulation_2 <- mh_tour(N = 50, w = 0.01)
 ```
 
 ```{r}
-ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
+ggplot(mh_simulation_2, aes(x = iteration, y = mu)) + 
   geom_line()
 ```
 
 c.  
-
-```{r}
-one_mh_iteration <- function(w, current){
- # STEP 1: Propose the next chain location
- proposal <- runif(1, min = current - w, max = current + w)
-  
- # STEP 2: Decide whether or not to go there
- proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
- current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
- alpha <- min(1, proposal_plaus / current_plaus)
- next_stop <- sample(c(proposal, current), 
-                     size = 1, prob = c(alpha, 1-alpha))
-  
- # Return the results
- return(data.frame(proposal, alpha, next_stop))
-}
-```
-
-```{r}
-mh_tour <- function(N, w){
-  # 1. Start the chain at location 3
-  current <- 3
-
-  # 2. Initialize the simulation
-  mu <- rep(0, N)
-
-  # 3. Simulate N Markov chain stops
-  for(i in 1:N){    
-    # Simulate one iteration
-    sim <- one_mh_iteration(w = w, current = current)
-    
-    # Record next location
-    mu[i] <- sim$next_stop
-    
-    # Reset the current location
-    current <- sim$next_stop
-  }
-  
-  # 4. Return the chain locations
-  return(data.frame(iteration = c(1:N), mu))
-}
-```
 
 ```{r}
 set.seed(84735)
@@ -639,50 +557,8 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
 d.  
 
 ```{r}
-one_mh_iteration <- function(w, current){
- # STEP 1: Propose the next chain location
- proposal <- runif(1, min = current - w, max = current + w)
-  
- # STEP 2: Decide whether or not to go there
- proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
- current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
- alpha <- min(1, proposal_plaus / current_plaus)
- next_stop <- sample(c(proposal, current), 
-                     size = 1, prob = c(alpha, 1-alpha))
-  
- # Return the results
- return(data.frame(proposal, alpha, next_stop))
-}
-```
-
-```{r}
-mh_tour <- function(N, w){
-  # 1. Start the chain at location 3
-  current <- 3
-
-  # 2. Initialize the simulation
-  mu <- rep(0, N)
-
-  # 3. Simulate N Markov chain stops
-  for(i in 1:N){    
-    # Simulate one iteration
-    sim <- one_mh_iteration(w = w, current = current)
-    
-    # Record next location
-    mu[i] <- sim$next_stop
-    
-    # Reset the current location
-    current <- sim$next_stop
-  }
-  
-  # 4. Return the chain locations
-  return(data.frame(iteration = c(1:N), mu))
-}
-```
-
-```{r}
 set.seed(84735)
-mh_simulation_1 <- mh_tour(N = 1000, w = 0.1)
+mh_simulation_1 <- mh_tour(N = 1000, w = 0.01)
 ```
 
 ```{r}
@@ -692,11 +568,13 @@ ggplot(mh_simulation_1, aes(x = iteration, y = mu)) +
 
 e.  
 
-"w" is the the Uniform half-width. Due to this, it makes sense that a w value will result in a more detailed plot. A larger w will result in a chunkier plot with less detail across iterations. This can be seen in comparing a and b. a, with a larger w, is has a chunky, stark line. b has much more detail and variation across the line, as it has a smaller w.
+"w" is the the Uniform half-width. The half-width defines the range of potential proposals. A small w sets a small range for the tour’s current location. With b, for example, the chain can only move in the range of 0.01 units each time. Due to this, proposals will be very close to the current location and will have a high acceptance rate. Proposals will therefore tend to be very close to the current location, and thus have similar posterior plausibility and a high probability of being accepted. Because of this, a lower w will result in a more detailed plot. 
+
+On the other hand, a larger range will result in a chunkier plot with less detail across iterations. This can be seen in comparing a and b. a, with a w of 50, charts a chunky line. This is due to its larger range around the tour's current location. Proposals can be much higher and lower than the current location compared to b. These proposals can be far outside what is plausible, causing more of them than b to be rejected. 
 
 f.  
 
-Having a low w is important in scenarios with more iterations. As seen in c and d, plot d has much more detail and gives us more information about the variation between iterations than c does---it has a low w.
+Having a low w is very important in scenarios with more iterations. As seen in c and d, plot d has much more detail and gives us more detailed information. For example, mu is around 3.15 in d, where it is around 4 in c. d has more mu's across the iterations, which leads me to trust its average more. 
 
 ## 7.12
 
@@ -717,7 +595,9 @@ one_mh_normal_iteration <- function(s, current){
  # Return the results
  return(data.frame(proposal, alpha, next_stop))
 }
+```
 
+```{r}
 mh_tour_normal <- function(N, s){
   
   # 1. Start the chain at location 3
@@ -742,6 +622,8 @@ mh_tour_normal <- function(N, s){
   return(data.frame(iteration = 1:N, mu))
 }
 ```
+
+a. 
 
 ```{r}
 set.seed(84735)
@@ -775,7 +657,9 @@ mh_tour_normal(1000, 10) |>
 
 e.  
 
-The standard deviation dictates how many deviations from the current value that the next chain's value will be predicted from. When changing the standard deviation to a larger number, the range that the next predicted value will be in is broadened. This is why we see a larger range of values and places where the line is flat in b's plot compared to a.
+The standard deviation dictates how many deviations from the current value that the next chain's value will be predicted from. When changing the standard deviation to a larger number, the range that the next predicted value will be in is broadened. With a larger standard deviation, more proposals also get rejected. This is why we see a larger range of values and places where the line is flat in b's plot compared to a's.
+
+On the other hand, a smaller deviation like a's will result in a finer range for mu and more proposals are accepted (since they're so close to the current value). This is what dictates the smaller range and more detail in a's plot. 
 
 f.  
 
@@ -791,21 +675,21 @@ mh_tour_normal(1000, 1) |>
 
 a.  
 
-Exponential because it is greater than 0.
+I would choose an exponential proposal model because lambda is greater than 0.
 
 b.  
 
 ```{r}
-one_iteration <- function(a, b, current){
+one_iteration_exp <- function(a, b, current){
  # Propose the next chain location
- proposal <- rbeta(1, a, b)
+ proposal <- rgamma(1, a, b)
   
  # Decide whether or not to go there
- proposal_plaus <- dbeta(proposal, 2, 3) * dbinom(1, 2, proposal)
- proposal_q     <- dbeta(proposal, a, b)
- current_plaus  <- dbeta(current, 2, 3) * dbinom(1, 2, current)
- current_q      <- dbeta(current, a, b)
- alpha <- min(1, proposal_plaus / current_plaus * current_q / proposal_q)
+ proposal_plaus <- dgamma(proposal, 1, 0.1) * dexp(current, rate = proposal)
+ proposal_q     <- dgamma(proposal, a, b)
+ current_plaus  <- dgamma(current, 1, 0.1) * dexp(current, rate = proposal)
+ current_q      <- dgamma(current, a, b)
+ alpha <- alpha <- min(1, proposal_plaus / current_plaus) 
  next_stop <- sample(c(proposal, current), 
                      size = 1, prob = c(alpha, 1-alpha))
   
@@ -813,17 +697,17 @@ one_iteration <- function(a, b, current){
 ```
 
 ```{r}
-betabin_tour <- function(N, a, b){
+exp_tour <- function(N, a, b){
   # 1. Start the chain at location 1
-  current <- 1
+  current <- 4
 
   # 2. Initialize the simulation
-  pi <- rep(0, N)
+  pi <- rep(NA, N)
   
   # 3. Simulate N Markov chain stops
   for(i in 1:N){    
     # Simulate one iteration
-    sim <- one_iteration(a = a, b = b, current = current)
+    sim <- one_iteration_exp(a = a, b = b, current = current)
     
     # Record next location
     pi[i] <- sim$next_stop
@@ -839,85 +723,115 @@ betabin_tour <- function(N, a, b){
 
 ```{r}
 set.seed(84735)
-betabin_sim <- betabin_tour(N = 1000, a = 1, b = .1)
+exp_sim <- exp_tour(N = 1000, a = 1, b = .1)
 
-ggplot(betabin_sim, aes(x = iteration, y = pi)) + 
-  geom_line()
+ggplot(exp_sim, aes(x = iteration, y = pi)) + 
+  geom_line() 
 ```
 
 c.  
 
-0.4
+The posterior is about 1. 
 
 d.  
 
 ```{r}
 # Plot the results
-ggplot(betabin_sim, aes(x = iteration, y = pi)) + 
-  geom_line()
-ggplot(betabin_sim, aes(x = pi)) + 
+ggplot(exp_sim, aes(x = pi)) + 
   geom_histogram(aes(y = ..density..), color = "white") + 
-  stat_function(fun = dbeta, args = list(3, 4), color = "blue")
+  stat_function(fun = dgamma, args = list(1, 0.1), color = "blue")
 ```
-
-It is not excellent at approximation.
-
+My Markov chain's approximation is pretty good. The histogram of my model follows the curve of my gamma distribution function. 
 ## 7.15
 
-prior: proportion of emails I receive 24 hours: 19/24
+a. 
+
+Question: Will I eat a pound of celery per day (counting two days)?
+
+b.
+
+I will eat all of a 1 pound bag of celery on one day. The second day I will eat 0 pounds of celery, since I will probably be sick of it by then. For some context, I bought celery that I need to eat soon before it expires.
+
+π|(Y=1) ∼ Beta(3,4) 
+
+c. 
+
+I ate the 1 lb of celery on day 1. On day 2, I ate none. 
 
 ```{r}
-one_mh_iteration <- function(w, current){
+data = c(1,0)
+data
+```
+
+Y = 1 
+n = 2
+
+d.
+
+```{r}
+celery_one_iteration <- function(a, b, current){
  # STEP 1: Propose the next chain location
- proposal <- runif(1, min = current - w, max = current + w)
+ proposal <- rbeta(1, a, b)
   
  # STEP 2: Decide whether or not to go there
- proposal_plaus <- dnorm(proposal, 0, 1) * dnorm(6.25, proposal, 0.75)
- current_plaus  <- dnorm(current, 0, 1) * dnorm(6.25, current, 0.75)
- alpha <- min(1, proposal_plaus / current_plaus)
+ proposal_plaus <- dbeta(proposal, 2, 3) * dbinom(1, 2, proposal)
+ proposal_q     <- dbeta(proposal, a, b)
+ current_plaus  <- dbeta(current, 2, 3) * dbinom(1, 2, current)
+ current_q      <- dbeta(current, a, b)
+ alpha <- min(1, proposal_plaus / current_plaus * current_q / proposal_q)
  next_stop <- sample(c(proposal, current), 
                      size = 1, prob = c(alpha, 1-alpha))
   
- # Return the results
  return(data.frame(proposal, alpha, next_stop))
 }
 ```
 
 ```{r}
-mh_tour <- function(N, w){
-  # start the chain at 19 emails
-  current <- 19
+celery_tour <- function(N, a, b){
+  # 1. Start the chain at location 0.5
+  current <- 0.5
 
-  # initialize the simulation
-  mu <- rep(0, N)
-
-  # simulate N Markov chain stops
+  # 2. Initialize the simulation
+  pi <- rep(0, N)
+  
+  # 3. Simulate N Markov chain stops
   for(i in 1:N){    
     # Simulate one iteration
-    sim <- one_mh_iteration(w = w, current = current)
+    sim <- celery_one_iteration(a = a, b = b, current = current)
     
-    # record next email
-    mu[i] <- sim$next_stop
+    # Record next location
+    pi[i] <- sim$next_stop
     
-    # reset the current email
+    # Reset the current location
     current <- sim$next_stop
   }
   
-  # return the chain emails
-  return(data.frame(iteration = c(1:N), mu))
+  # 4. Return the chain locations
+  return(data.frame(iteration = c(1:N), pi))
 }
-
-#  simulate a Markov chain tour of length 2000
-set.seed(84735)
-mh_simulation_1 <- mh_tour(N = 2000, w = pi)
-
-# plot
-ggplot(mh_simulation_1, aes(x = iteration, y = mu)) + 
-  geom_line()
-
-ggplot(mh_simulation_1, aes(x = mu)) + 
-  geom_histogram(aes(y = ..density..), color = "white", bins = 20) + 
-  stat_function(fun = dnorm, args = list(4,0.6), color = "blue")
 ```
 
-The trace plot (left) illustrates the email or sequence of emails stops. The histogram (right) illustrates the relative amount of emails per day.
+I used the Beta-Binomial model. I chose it because it only has one parameter and includes the underlying proportion of success. This matches well with my data. 
+
+Also, I use the independence sampling algorithm in the functions above. This is so that the proposal is not dependent on the current tour stop. 
+
+e.
+
+```{r}
+set.seed(84735)
+celery_sim <- celery_tour(N = 2000, a = 1, b = 1)
+
+# Plot the results
+ggplot(celery_sim, aes(x = iteration, y = pi)) + 
+  geom_line()
+```
+
+f. 
+
+```{r}
+ggplot(celery_sim, aes(x = pi)) + 
+  geom_histogram(aes(y = ..density..), bins = 15, color = "white") + 
+  stat_function(fun = dbeta, args = list(3, 4), color = "blue")
+```
+
+The histogram illustrates the relative posteriors of celery eaten per day. Each proposal was equally likely to be anywhere between 0 and 1. As seen in the plot above, the proposals are centered around 0.4 lbs of celery eaten per day. 
