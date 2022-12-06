@@ -2,7 +2,9 @@
 title: "ch8.rmd"
 author: "Brea Koenes"
 date: "10/24/2022"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -37,9 +39,13 @@ a.
 
 Beta-Binomial is the correct choice in model because the prior is binomial. Specifically, the subject either believes in climate change or does not.
 
-b.  and c.
+b.  
 
-My prior would be Beta(1,2). It is the same as the authors.
+My prior would be Beta(1,4). The mean of the prior is 0.20; 20% will not believe in climate change. My standard deviation is 4.
+
+c.
+
+My prior understanding is that, on average, less people will not believe in climate change. In other words, I think that more people believe that climate change is real than the authors think.
 
 d.  
 
@@ -59,11 +65,13 @@ summarize_beta_binomial(alpha = 1, beta = 2, y = 150, n = 1000)
 qbeta(c(0.25, 0.975), 151, 852)
 ```
 
+There is a 95% probability that the true proportion of people that don't believe in climate change lies within 14-17%. 
+
 ## 8.15
 
 a.  
 
-Given the credible interval above, we can keep our null hypothesis that it is over 10%.
+Given the credible interval above, it is likely that the true proportion lies within 14-17%. The null hypothesis states that the proportion is equal to or lower than 10%. The alternative hypothesis is that the proportion is greater than 10%. With this information, I would personally raise the null hypothesis to be equal to or lower than 0.14, and the laternative hypothesis greater than 0.14.
 
 b.  
 
@@ -91,17 +99,14 @@ The posterior odds of our hypothesis are roughly 18 times higher than the prior 
 
 d.  
 
-Our alternative hypothesis that pi is greater than 10% is statistically significant and likely to occur.
+Our alternative hypothesis that pi is greater than 10% is quite likely to occur. In the context of our scenario, it is very likely the true proportion of people that don't believe in climate change is over 10%. 
 
 ## 8.16
 
 a.  
 
 ```{r}
-require(rstan)
-
-# STEP 1: DEFINE the model
-model <- "
+climate_model <- "
   data {
     int<lower = 0, upper = 1000> Y;
   }
@@ -110,25 +115,32 @@ model <- "
   }
   model {
     Y ~ binomial(150, pi);
-    pi ~ beta(151, 852);
+    pi ~ beta(1,2);
   }
 "
 
 # STEP 2: SIMULATE the posterior
-sim <- stan(model_code = model, data = list(Y = 150), 
-                chains = 4, iter = 5000*2, seed = 84735)
+sim <- stan(model_code = climate_model, 
+             data = list(Y = 150), 
+             chains = 4, 
+             iter = 5000*2, 
+             seed = 84735)
 ```
-
 b.  
 
 ```{r}
 require(bayesplot)
 
 # Parallel trace plots & density plots
-mcmc_trace(sim, pars = "pi", size = 0.5) + 
+mcmc_trace(sim, pars = "pi", size = .5) + 
   xlab("iteration")
-mcmc_dens_overlay(sim, pars = "pi")
+```
 
+```{r}
+mcmc_dens_overlay(sim, pars = "pi")
+```
+
+```{r}
 # Autocorrelation plot
 mcmc_acf(sim, pars = "pi")
 ```
@@ -136,12 +148,14 @@ mcmc_acf(sim, pars = "pi")
 c.  
 
 ```{r}
-rhat(sim, pars = "pi")
-
 neff_ratio(sim, pars = "pi")
 ```
 
-R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample.
+```{r}
+stan_rhat(sim, par = "pi")
+```
+
+R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample. 
 
 ## 8.17
 
@@ -223,15 +237,42 @@ The mean count per 100 is 1.5. There are observations of count_per_100, includin
 
 d.  
 
+```{r}
+summarize_beta_binomial(alpha = 2, beta = 1, y = 1.5, n = 100)
+```
+
+```{r}
+qbeta(c(0.25, 0.975), 3.5, 99.5)
+```
+
+
+There is a 95% probability that the true proportion of loons observed by a birdwatcher across a 100-hour observation period lies within 0.02-0.08%. 
+
 ## 8.22
 
 a.  
 
-b.  
+$$
+H_0 = \lambda >= 0.01 \\
+H_a = \lambda >= 0.01 
+$$
+
+b. 
+
+I would say that the alternative hypothesis is too low. The credible interval indicates that the actual proportion is probable to be larger than 0.01, not smaller as the alternative hypothesis states. I would say that the alternative hypothesis is not very likely. 
 
 c.  
 
+```{r}
+post_prob <- pbeta(0.01, 2, 1)
+post_prob
+```
+
+The posterior probability is 0.0001. This means that our alternative hypothesis is not likely at all to be true. 
+
 d.  
+
+My conclusion about lambda is that the null hypothesis is much more likely than the alternative hypothesis. This means that the true proportion of loon sightings in a 100-hour observation period is likely to be greater than 1%. 
 
 ## 8.23
 
