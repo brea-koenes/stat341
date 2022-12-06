@@ -11,6 +11,12 @@ library(bayesrules)
 library(tidyverse)
 library(ggformula)
 library(dplyr)
+library(bayesplot)
+library(tidybayes)
+library(posterior)
+library(janitor)
+library(rstan)
+library(broom.mixed)
 ```
 
 # Chapter 9
@@ -129,25 +135,41 @@ d.
 
 I would say that we have alright posterior evidence that there's a negative association between ridership and humidity. The standard error is low enough for it to carry some weight, but not low enough for there to be very certain evidence to their relationship. However, the CI is a small range, so that does help the credibility of the evidence of their relationship.
 
-## 9.13
-
-a.  
-
-b.  
-
-c.  
-
-d.  
-
 ## 9.16
 
 a.  
 
+```{r}
+summary(penguins_bayes)
+```
+
+
+```{r}
+penguins_model <- stan_glm(flipper_length_mm ~ bill_length_mm, data = penguins_bayes,
+                       family = gaussian,
+                       prior_PD = TRUE, 
+                       prior_intercept = normal(43.92, 11.82),
+                       prior = normal(200.9, 28.9), 
+                       prior_aux = exponential(0.0008),
+                       chains = 4, iter = 10000*2, seed = 84735)
+```
+
 b.  
+
+```{r}
+prior_summary(penguins_model)
+```
 
 c.  
 
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(penguins_model, size = 0.1)
+```
+
 d.  
+
+It looks like flipper and bill length may be negatively associated.
 
 ## 9.17
 
@@ -169,25 +191,35 @@ It meets the conditions for a simple normal regression model. It has linearity o
 
 a.  
 
-b.  
-
-c.  
-
-d.  
-
-e.  
-
-## 9.19
-
-a.  
+```{r}
+penguins_post_model <- stan_glm(flipper_length_mm ~ bill_length_mm, data = penguins_bayes,
+                       family = gaussian,
+                       prior_intercept = normal(43.92, 11.82),
+                       prior = normal(200.9, 28.9), 
+                       prior_aux = exponential(0.0008),
+                       chains = 4, iter = 10000*2, seed = 84735)
+```
 
 b.  
 
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(penguins_post_model, size = 0.1)
+```
+
 c.  
+
+```{r}
+tidy(penguins_post_model, conf.int = TRUE, conf.level = 0.90)
+```
 
 d.  
 
+There is a 90% probability that the true bill_length_mm lies within .1.5-.1.9. 
+
 e.  
+
+There is a decent standard error, so I'm wary to say that we have enough evidence that they are related.
 
 # Chapter 10
 
@@ -203,7 +235,7 @@ problem7_data <-
   )
 ```
 
-\$\$
+$$
 
 y=mx+b \\
 
@@ -217,11 +249,11 @@ y= \beta\_0 + \beta\_1x \\
 
 \hat{y}\_2= -1.8 + 2.1 \cdot 10 \\
 
-\$\$
+$$
 
 b.  
 
-```{r problem7b}
+```{r}
 problem7_data |>
   mutate(y_hat=-1.8+2.1*x, 
          y_model=-1.8+2.1*x+rnorm(5,0,0.8),
@@ -233,19 +265,65 @@ problem7_data |>
 
 a.  
 
+```{r}
+head(coffee_ratings)
+```
+
+It likely violates the independence assumption due to aroma and aftertaste not being completely independent. Also, other variables come into play, such as sweetness, clean_cup, and acidity.
+
 b.  
+
+```{r}
+set.seed(84735)
+new_coffee <- coffee_ratings %>% 
+  group_by(farm_name) %>% 
+  sample_n(1) %>% 
+  ungroup()
+dim(new_coffee)
+```
 
 ## 10.14
 
 a.  
 
+```{r}
+ggplot(new_coffee, aes(x = aroma, y = total_cup_points)) + 
+  geom_point(size = 0.5) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
 b.  
+
+```{r}
+summary(new_coffee)
+```
+
+```{r}
+coffee_model <- stan_glm(total_cup_points ~ aroma, data = new_coffee,
+                       family = gaussian,
+                       prior_intercept = normal(7.5, 1.2),
+                       prior = normal(82.10, 30), 
+                       prior_aux = exponential(0.0008),
+                       chains = 4, iter = 10000*2, seed = 84735)
+```
 
 c.  
 
+```{r}
+mcmc_trace(coffee_model, size = 0.1)
+```
+
 d.  
 
+```{r}
+
+```
+
 e.  
+
+```{r}
+
+```
 
 ## 10.15
 
