@@ -145,6 +145,10 @@ neff_ratio(sim, pars = "pi")
 stan_rhat(sim, par = "pi")
 ```
 
+```{r}
+summary(sim)
+```
+
 R-hat is a convergence diagnostic; it tells us whether or not an MCMC algorithm has converged flag situations where the algorithm has failed converge. Effective sample size tells us the effectiveness of a sample chain; it estimates the sample size required to achieve the same level of precision if the pulse of the sample used was a simple random sample. 
 
 ## 8.17

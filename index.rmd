@@ -17,7 +17,7 @@ output:
 
 -   [Ch 8](ch8.html)
 
-    -   more than half ready to go
+    -   ready to go
 
 -   [Ch 9-10](ch9-10.html)
 

@@ -3,6 +3,7 @@ title: "R Notebook"
 output:
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -316,14 +317,12 @@ mcmc_trace(coffee_model, size = 0.1)
 d.  
 
 ```{r}
-
+summary(coffee_model)
 ```
 
 e.  
 
-```{r}
-
-```
+Aroma and rating are associated. The better a coffee's aroma is, the rating is likely to be better as well.
 
 ## 10.15
 

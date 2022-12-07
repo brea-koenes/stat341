@@ -11,13 +11,75 @@ library(bayesrules)
 library(tidyverse)
 library(ggformula)
 library(dplyr)
+require(bayesplot)
 ```
 
 # Chapter 11
 
 ## 2
 
+a. 
+
+There is no indicator for the Ford category becuase it is the intercept.
+
+b.
+
+A car’s miles per gallon in a city given its a Subaru
+
+c. 
+
+a Ford’s miles per gallon in a city 
+
 ## 10
+
+a. 
+
+```{r}
+penguin_data <- penguins_bayes %>% 
+  filter(species %in% c("Adelie", "Gentoo"))
+
+summary(penguin_data)
+```
+
+b.
+
+```{r}
+require(rstanarm)
+
+model <- stan_glm(
+  body_mass_g ~ species + flipper_length_mm, data = penguin_data, 
+  family = gaussian,
+  prior_PD = TRUE,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 5, iter = 8000, seed = 84735)
+```
+
+c.
+
+```{r}
+summary(model)
+```
+
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(model, size = .1)
+```
+
+```{r}
+# Density plots of parallel chains
+mcmc_dens_overlay(model)
+```
+
+d.
+
+```{r}
+tidy(model, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.95)
+```
+
+e.
 
 ## 11
 
@@ -27,11 +89,90 @@ library(dplyr)
 
 ## 15
 
+```{r}
+summary(weather_WU)
+```
+
+```{r}
+weather_model <- stan_glm(
+  temp3pm ~ location + rainfall + pressure9am + month,
+  data = weather_WU, family = gaussian,
+  prior_intercept = normal(30, 5),
+  prior = normal(0, 3, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+summary(weather_model)
+```
+
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(weather_model, size = .1)
+```
+
+```{r}
+# Density plots of parallel chains
+mcmc_dens_overlay(weather_model)
+```
+
 # Chapter 12
 
 ## 5
 
+a.
+
+```{r}
+summary(bald_eagles)
+```
+
+```{r}
+gf_histogram(~count, data = bald_eagles)
+```
+
+b.
+
+
+
+```{r}
+gf_point(count~year, data = bald_eagles)
+```
+
+Count increases with year
+
+c. 
+
+```{r}
+gf_point(count~year, data = bald_eagles, color = bald_eagles$hours)
+```
+
+Hours does not look associated with counts over the years.
+
 ## 6
+
+```{r}
+summary(bald_eagles)
+```
+
+a.
+
+```{r}
+bald_eagles_model <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+prior_summary(bald_eagles_model)
+```
+
+b.
+
+c. 
 
 ## 7
 
