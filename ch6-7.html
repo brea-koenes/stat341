@@ -530,11 +530,33 @@ bb_model &lt;- &quot;
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<pre><code>## 
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 9e-06 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
+## Chain 1: Gradient evaluation took 1.4e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -551,15 +573,15 @@ bb_model &lt;- &quot;
 ## Chain 1: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.37739 seconds (Warm-up)
-## Chain 1:                7.50947 seconds (Sampling)
-## Chain 1:                15.8869 seconds (Total)
+## Chain 1:  Elapsed Time: 7.23799 seconds (Warm-up)
+## Chain 1:                7.25702 seconds (Sampling)
+## Chain 1:                14.495 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 5e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -576,9 +598,9 @@ bb_model &lt;- &quot;
 ## Chain 2: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.46858 seconds (Warm-up)
-## Chain 2:                7.01382 seconds (Sampling)
-## Chain 2:                14.4824 seconds (Total)
+## Chain 2:  Elapsed Time: 7.50626 seconds (Warm-up)
+## Chain 2:                7.03137 seconds (Sampling)
+## Chain 2:                14.5376 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;6cc1e5f794ef111dd783f9c98fed9c41&#39; NOW (CHAIN 3).
@@ -601,9 +623,9 @@ bb_model &lt;- &quot;
 ## Chain 3: Iteration: 7200 / 8000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 8000 / 8000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 7.07927 seconds (Warm-up)
-## Chain 3:                8.01745 seconds (Sampling)
-## Chain 3:                15.0967 seconds (Total)
+## Chain 3:  Elapsed Time: 7.02447 seconds (Warm-up)
+## Chain 3:                8.14807 seconds (Sampling)
+## Chain 3:                15.1725 seconds (Total)
 ## Chain 3:</code></pre>
 <pre><code>## Warning: There were 12000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -668,11 +690,33 @@ gp_model &lt;- &quot;
 # Simulate the posterior
 gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)), 
                chains = 4, iter = (10000*2)/4, seed = 84735)</code></pre>
-<pre><code>## 
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 9e-06 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
+## Chain 1: Gradient evaluation took 8e-06 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -689,15 +733,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 1: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 4.15362 seconds (Warm-up)
-## Chain 1:                4.13442 seconds (Sampling)
-## Chain 1:                8.28804 seconds (Total)
+## Chain 1:  Elapsed Time: 4.11734 seconds (Warm-up)
+## Chain 1:                4.10907 seconds (Sampling)
+## Chain 1:                8.22641 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 3e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -714,15 +758,15 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 2: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 4.03418 seconds (Warm-up)
-## Chain 2:                4.35495 seconds (Sampling)
-## Chain 2:                8.38913 seconds (Total)
+## Chain 2:  Elapsed Time: 4.02469 seconds (Warm-up)
+## Chain 2:                4.27429 seconds (Sampling)
+## Chain 2:                8.29898 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 3e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+## Chain 3: Gradient evaluation took 4e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -739,9 +783,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 3: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 4.01933 seconds (Warm-up)
-## Chain 3:                4.15109 seconds (Sampling)
-## Chain 3:                8.17042 seconds (Total)
+## Chain 3:  Elapsed Time: 4.04164 seconds (Warm-up)
+## Chain 3:                4.08834 seconds (Sampling)
+## Chain 3:                8.12998 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;5c5d2bbe853560fe779168fe28e58271&#39; NOW (CHAIN 4).
@@ -764,9 +808,9 @@ gp_sim &lt;- stan(model_code = gp_model, data = list(Y = c(0,1,0)),
 ## Chain 4: Iteration: 4500 / 5000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 5000 / 5000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 4.04032 seconds (Warm-up)
-## Chain 4:                4.463 seconds (Sampling)
-## Chain 4:                8.50332 seconds (Total)
+## Chain 4:  Elapsed Time: 4.04228 seconds (Warm-up)
+## Chain 4:                4.55874 seconds (Sampling)
+## Chain 4:                8.60102 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 10000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -817,7 +861,29 @@ model &lt;- &quot;
 data = list(y=c(7.1,8.9,8.4,8.6))
 
 sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</code></pre>
-<pre><code>## 
+<pre><code>## Trying to compile a simple C file</code></pre>
+<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
+## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
+##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+##  namespace Eigen {
+##  ^~~~~~~~~
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+##  namespace Eigen {
+##                  ^
+## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
+##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
+##                  from &lt;command-line&gt;:0:
+## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+##  #include &lt;complex&gt;
+##           ^~~~~~~~~
+## compilation terminated.
+## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
+## make: *** [foo.o] Error 1
+## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 7e-06 seconds
@@ -838,15 +904,15 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.40528 seconds (Warm-up)
-## Chain 1:                8.4479 seconds (Sampling)
-## Chain 1:                16.8532 seconds (Total)
+## Chain 1:  Elapsed Time: 8.48116 seconds (Warm-up)
+## Chain 1:                8.53548 seconds (Sampling)
+## Chain 1:                17.0166 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 4e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 2: Gradient evaluation took 3e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -863,15 +929,15 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 8.20442 seconds (Warm-up)
-## Chain 2:                8.65762 seconds (Sampling)
-## Chain 2:                16.862 seconds (Total)
+## Chain 2:  Elapsed Time: 8.25653 seconds (Warm-up)
+## Chain 2:                8.79617 seconds (Sampling)
+## Chain 2:                17.0527 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 4e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+## Chain 3: Gradient evaluation took 3e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -888,9 +954,9 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 8.19784 seconds (Warm-up)
-## Chain 3:                8.25148 seconds (Sampling)
-## Chain 3:                16.4493 seconds (Total)
+## Chain 3:  Elapsed Time: 8.4316 seconds (Warm-up)
+## Chain 3:                8.38543 seconds (Sampling)
+## Chain 3:                16.817 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;c5f32c98c8cdfa596fe82837233578d3&#39; NOW (CHAIN 4).
@@ -913,9 +979,9 @@ sim &lt;- stan(model_code = model, data = data, iter = 5000*2, seed = 84735)</co
 ## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 9.0121 seconds (Warm-up)
-## Chain 4:                8.2501 seconds (Sampling)
-## Chain 4:                17.2622 seconds (Total)
+## Chain 4:  Elapsed Time: 9.02987 seconds (Warm-up)
+## Chain 4:                8.24518 seconds (Sampling)
+## Chain 4:                17.275 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
