@@ -21,8 +21,8 @@ output:
 
 -   [Ch 9-10](ch9-10.html)
 
-    -   some done, not ready
+    -   ready to go
 
 -   [Ch 11-12](ch11-11.html)
 
-    -   not done
+    -   ready to go

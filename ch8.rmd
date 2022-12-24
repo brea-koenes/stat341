@@ -207,6 +207,11 @@ chains_df |>
 a.  
 
 ```{r}
+glimpse(loons)
+```
+
+
+```{r}
 gf_point(count_per_100~hours, data=loons)
 ```
 
@@ -275,7 +280,8 @@ a.
 # Define model
 loon_model <- "
   data {
-    int<lower = 0, upper = 100> Y;
+    int<lower = 0> n;
+    int<lower = 0> Y[n];
   }
   parameters {
     real<lower = 0> lambda;
@@ -287,7 +293,7 @@ loon_model <- "
 "
 
 # Simulate the posterior
-loon_sim <- stan(model_code = loon_model, data = list(Y = 2), 
+loon_sim <- stan(model_code = loon_model, data = list(Y = loons$count, n = nrow(loons)), 
                chains = 4, iter = (5000*2), seed = 84735)
 ```
 

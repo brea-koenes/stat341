@@ -1,5 +1,5 @@
 ---
-title: "ch9-10.rmd"
+title: "ch11-12.rmd"
 author: "Brea Koenes"
 date: "10/24/2022"
 output: html_document
@@ -20,7 +20,7 @@ require(bayesplot)
 
 a. 
 
-There is no indicator for the Ford category becuase it is the intercept.
+There is no indicator for the Ford category because it is the intercept.
 
 b.
 
@@ -83,9 +83,31 @@ e.
 
 ## 11
 
+a.
+
+b.
+
+c.
+
 ## 12
 
+a.
+
+b.
+
+c.
+
 ## 13
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
 
 ## 15
 
@@ -176,6 +198,31 @@ c.
 
 ## 7
 
+a.
+
+b.
+
+c.
+
+d.
+
 ## 8
 
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
 ## 9
+
+a.
+
+b.
+
+c.
+

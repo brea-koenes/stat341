@@ -328,38 +328,151 @@ Aroma and rating are associated. The better a coffee's aroma is, the rating is l
 
 a.  
 
+```{r}
+first_set <- head(coffee_model, 1)
+first_set
+
+set.seed(84735)
+one_simulation <- new_coffee %>% 
+  mutate(mu = -65 + 11 * 11,
+         simulated_coffee = rnorm(572, mean = mu, sd = 62))
+```
+
 b.  
+
+```{r}
+ggplot(one_simulation, aes(x = simulated_coffee)) + 
+  geom_density(color = "red") + 
+  geom_density(aes(x = aroma), color = "darkblue")
+```
 
 c.  
 
+```{r}
+pp_check(coffee_model, nreps = 50) + 
+  xlab("aroma")
+```
+
 d.  
+
+Assumption 2 is that the relationship is linear. 
+
+```{r}
+ggplot(new_coffee, aes(x = aroma, y = total_cup_points)) + 
+  geom_point(size = 0.5) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+The relationship is basically linear. This passes this assumption.
+
+Assumption 3 is that the variability in Y does not increase with X. As seen in the previous density plot, Y does not increase with X. It passes this assumption as well.
 
 ## 10.16
 
 a.  
 
+```{r}
+set.seed(84735)
+one_simulation2 <- new_coffee %>% 
+  mutate(mu = -65 + 11 * 7.67,
+         simulated_coffee = rnorm(572, mean = mu, sd = 62))
+```
+
 b.  
+
+```{r}
+ggplot(one_simulation2, aes(x = simulated_coffee)) + 
+  geom_density(color = "red") + 
+  geom_density(aes(x = aroma), color = "darkblue")
+```
 
 c.  
 
+```{r}
+set.seed(84735)
+predictions <- posterior_predict(coffee_model, newdata = new_coffee)
+
+ppc_intervals(new_coffee$total_cup_points, yrep = predictions, x = new_coffee$aroma, 
+              prob = 0.5, prob_outer = 0.95)
+```
+
 d.  
+
+All batches have ratings that are within their 50% posterior prediction interval (light blue line).
 
 ## 10.17
 
 a.  
 
+```{r}
+set.seed(84735)
+cv_procedure <- prediction_summary_cv(
+  model = coffee_model, data = new_coffee, k = 10)
+cv_procedure
+```
+
 b.  
+
+MAE is the mean average error per fold, which measures the prediction quality. This measure displays the typical difference between the observed Y_i and their posterior predictive means.
+
+MAE scaled is the mean average error that measures the typical number of standard deviations that the observed Y_i fall from their posterior predictive means. Its calculation is different from MAE due to dividing by standard deviation.
+
+Within 50 measures the proportion of observed Y_i that are within their 50% posterior prediction interval. 
+
+Within 95 measures the proportion of observed Y_i that are within their 95% posterior prediction interval.
 
 c.  
 
+```{r}
+set.seed(84735)
+prediction_summary(coffee_model, data = new_coffee)
+```
+
+The reported cross-validated MAE is verified given the information above from the 10 folds. 
+
 ## 10.18
+
+The stated typical prediction error is 61. Our model's is 65. Given this, I would say that our model is pretty fair.
 
 ## 10.19
 
 a.  
 
+```{r}
+coffee_model3 <- stan_glm(total_cup_points ~ aftertaste, data = new_coffee,
+                       family = gaussian,
+                       prior_intercept = normal(7.5, 1.2),
+                       prior = normal(82.10, 30), 
+                       prior_aux = exponential(0.0008),
+                       chains = 4, iter = 10000*2, seed = 84735)
+```
+
 b.  
+
+```{r}
+ggplot(new_coffee, aes(y = total_cup_points, x = aftertaste)) + 
+  geom_point(size = 0.2) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+It passes the linearity assumption, #2.
+
+```{r}
+pp_check(coffee_model3, nreps = 50) + 
+  xlab("aroma")
+```
+
+It passes assumption #3.
 
 c.  
 
+```{r}
+set.seed(84735)
+cv_procedure2 <- prediction_summary_cv(
+  model = coffee_model3, data = new_coffee, k = 10)
+cv_procedure2
+```
+
 d.  
+
+Aftertaste has a stronger association with total_cup_points, so I would choose aftertaste.
