@@ -276,9 +276,9 @@ b.
 
 ```{r}
 set.seed(84735)
-new_coffee <- coffee_ratings %>% 
-  group_by(farm_name) %>% 
-  sample_n(1) %>% 
+new_coffee <- coffee_ratings |> 
+  group_by(farm_name) |> 
+  sample_n(1) |> 
   ungroup()
 dim(new_coffee)
 ```
@@ -333,7 +333,7 @@ first_set <- head(coffee_model, 1)
 first_set
 
 set.seed(84735)
-one_simulation <- new_coffee %>% 
+one_simulation <- new_coffee |> 
   mutate(mu = -65 + 11 * 11,
          simulated_coffee = rnorm(572, mean = mu, sd = 62))
 ```
@@ -373,7 +373,7 @@ a.
 
 ```{r}
 set.seed(84735)
-one_simulation2 <- new_coffee %>% 
+one_simulation2 <- new_coffee |> 
   mutate(mu = -65 + 11 * 7.67,
          simulated_coffee = rnorm(572, mean = mu, sd = 62))
 ```

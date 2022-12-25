@@ -1,0 +1,482 @@
+---
+title: "ch11-12.rmd"
+author: "Brea Koenes"
+date: "10/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(bayesrules)
+library(rstanarm)
+library(bayesplot)
+library(tidyverse)
+library(broom.mixed)
+library(tidybayes)
+```
+
+# Chapter 11
+
+## 2
+
+a.  
+
+There is no indicator for the Ford category because it is the intercept.
+
+b.  
+
+A car's miles per gallon in a city given its a Subaru
+
+c.  
+
+a Ford's miles per gallon in a city
+
+## 10
+
+a.  
+
+```{r}
+penguin_data <- penguins_bayes |> 
+  filter(species %in% c("Adelie", "Gentoo"))
+
+summary(penguin_data)
+```
+
+b.  
+
+```{r}
+require(rstanarm)
+
+model <- stan_glm(
+  body_mass_g ~ species + flipper_length_mm, data = penguin_data, 
+  family = gaussian,
+  prior_PD = TRUE,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 5, iter = 8000, seed = 84735)
+```
+
+c.  
+
+```{r}
+summary(model)
+```
+
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(model, size = .1)
+```
+
+```{r}
+# Density plots of parallel chains
+mcmc_dens_overlay(model)
+```
+
+d.  
+
+```{r}
+tidy(model, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.95)
+```
+
+e.  
+
+```{r}
+model2 <- update(model, prior_PD = FALSE)
+```
+
+```{r}
+# Simulate a set of predictions
+set.seed(84735)
+model2_predict <- posterior_predict(
+  model2,
+  newdata = data.frame(species = c("Adelie", "Gentoo"), 
+                       flipper_length_mm = 197))
+
+# Plot the posterior predictive models
+mcmc_areas(model2_predict) +
+  ggplot2::scale_y_discrete(labels = c("Adelie", "Gentoo")) + 
+  xlab("flipper_length_mm")
+```
+
+## 11
+
+a.  
+
+```{r}
+interaction_model <- stan_glm(
+  body_mass_g ~ species + flipper_length_mm + species:flipper_length_mm, data = penguin_data, 
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 10000*4, seed = 84735)
+```
+
+b.  
+
+```{r}
+# Posterior summary statistics
+tidy(interaction_model, effects = c("fixed", "aux"))
+```
+
+```{r}
+set.seed(84735)
+penguin_data |> na.omit() |>
+  add_fitted_draws(interaction_model, n = 50) |>
+  ggplot(aes(x = "Adelie", y = "Gentoo", color = flipper_length_mm)) +
+    geom_line(aes(y = .value, group = paste(species, .draw)))
+```
+
+c.  
+
+```{r}
+tidy(interaction_model, effects = c("fixed", "aux"))
+```
+
+The interaction terms are necessary for this model. Looking at the summary above, speciesGentoo including the flipper_length_mm interaction has a much smaller standard error than speciesGentoo where the interaction is not factored in.
+
+## 12
+
+a.  
+
+```{r}
+three_predictor_model <- stan_glm(
+  body_mass_g ~ flipper_length_mm + bill_depth_mm + bill_length_mm, data = penguin_data, 
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 10000*4, seed = 84735)
+```
+
+b.  
+
+```{r}
+posterior_interval(three_predictor_model, prob = 0.95)
+```
+
+c.  
+
+All predictors have a significant positive association with body mass.
+
+## 13
+
+a.  
+
+```{r}
+mod1 <- stan_glm(
+  body_mass_g ~ flipper_length_mm, data = penguin_data, 
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 3, iter = 5000*3, seed = 84735)
+```
+
+```{r}
+mod2 <- stan_glm(
+  body_mass_g ~ species, data = penguin_data, 
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 3, iter = 5000*3, seed = 84735)
+```
+
+```{r}
+mod3 <- stan_glm(
+  body_mass_g ~ flipper_length_mm + species, data = penguin_data, 
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 3, iter = 5000*3, seed = 84735)
+```
+
+```{r}
+mod4 <- stan_glm(
+  body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm,
+  data = penguin_data,
+  family = gaussian,
+  prior_intercept = normal(42.7, 10, autoscale = TRUE),
+  prior = normal(4318, 1700, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 3, iter = 5000*3, seed = 84735)
+```
+
+b.  
+
+```{r}
+pp_check(mod1)
+pp_check(mod2)
+pp_check(mod3)
+pp_check(mod4)
+``` 
+
+c.  
+
+```{r}
+penguins_complete <- penguin_data |> 
+  select(flipper_length_mm, body_mass_g, species, 
+         bill_length_mm, bill_depth_mm) |> 
+  na.omit() 
+```
+
+```{r}
+set.seed(84735)
+prediction_summary_cv(model = mod1, data = penguins_complete, k = 10)  
+```
+
+```{r}
+set.seed(84735)
+prediction_summary_cv(model = mod2, data = penguins_complete, k = 10)  
+```
+
+```{r}
+set.seed(84735)
+prediction_summary_cv(model = mod3, data = penguins_complete, k = 10)  
+```
+
+```{r}
+set.seed(84735)
+prediction_summary_cv(model = mod4, data = penguins_complete, k = 10)  
+```
+
+d.  
+
+```{r}
+# Calculate ELPD for the 4 models
+set.seed(84735)
+loo_1 <- loo(mod1)
+loo_2 <- loo(mod2)
+loo_3 <- loo(mod3)
+loo_4 <- loo(mod4)
+
+# Results
+c(loo_1$estimates[1], loo_2$estimates[1], 
+  loo_3$estimates[1], loo_4$estimates[1])
+```
+
+```{r}
+# Compare the ELPD for the 4 models
+loo_compare(loo_1, loo_2, loo_3, loo_4)
+```
+
+The best model is model 4. mod3 is -40 worse than 4, with model 1 a similar amount lower as well. Model 2 is the worst model comparatively.
+
+e.  
+
+Looking at the ELPD posterior predictive accuracy, 10-fold cross-validation, and pp_check() charts, model 4 is the best model. It has the best accuracy and association between predictors and response variable. This makes sense that this is the best model; it uses more predictors than the other models, and all of the predictors are relevant. 
+
+## 15
+
+```{r}
+summary(weather_WU)
+```
+
+```{r}
+weather_model <- stan_glm(
+  temp3pm ~ location + rainfall + pressure9am + month,
+  data = weather_WU, family = gaussian,
+  prior_intercept = normal(30, 5),
+  prior = normal(0, 3, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+summary(weather_model)
+```
+
+```{r}
+# Trace plots of parallel chains
+mcmc_trace(weather_model, size = .1)
+```
+
+```{r}
+# Density plots of parallel chains
+mcmc_dens_overlay(weather_model)
+```
+
+# Chapter 12
+
+## 5
+
+a.  
+
+```{r}
+summary(bald_eagles)
+```
+
+```{r}
+require(ggformula)
+gf_histogram(~count, data = bald_eagles)
+```
+
+b.  
+
+```{r}
+gf_point(count~year, data = bald_eagles)
+```
+
+Count increases with year
+
+c.  
+
+```{r}
+gf_point(count~year, data = bald_eagles, color = bald_eagles$hours)
+```
+
+Hours looks associated positively with count over the years.
+
+## 6
+
+a.  
+
+```{r}
+bald_eagles_model <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+prior_summary(bald_eagles_model)
+```
+
+b.  
+
+$$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2,\sigma \\
+\tilde \\ \\ 
+N(\mu_i, \sigma^2) 
+\\ with  \\
+\mu_i = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} $$
+
+c.  
+
+```{r}
+pp_check(bald_eagles_model)
+```
+
+Our pp_check() shows that our Poisson regression assumptions are reasonable. The model is not very "wrong."
+
+## 7
+
+a.  
+
+Poisson is more appropriate because it works with discrete data that can only be equal to or greater than zero. Our data is integers that are greater than or equal to 0. 
+
+b.  
+
+```{r}
+bald_eagles_model2 <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+prior_summary(bald_eagles_model2)
+```
+
+c.  
+
+$$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2 \\
+\tilde \\ \\ 
+Pois(\lambda_i) 
+\\ with  \\
+\log(\lambda_i) = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} $$
+
+d.  
+
+```{r}
+pp_check(bald_eagles_model2)
+```
+
+The model is “good” and its assumptions are inappropriate for the bald eagle analysis.
+
+## 8
+
+a.  
+
+```{r}
+bald_eagles_model3 <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 prior_aux = exponential(1, autoscale = TRUE),
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+pp_check(bald_eagles_model3)
+```
+
+b.  
+
+$$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2,r \\
+\tilde \\ \\ 
+NegBin(\mu_i,r) 
+\\ with  \\
+\log(\mu_i) = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} $$
+
+c.  
+
+```{r}
+tidy(bald_eagles_model3, conf.int = TRUE, conf.level = 0.80)
+```
+
+The posterior median of year is 0.073. The posterior median of hours is 0.011. Year is more significant than hours. 
+
+d.  
+
+```{r}
+tidy(bald_eagles_model3, conf.int = TRUE, conf.level = 0.95)
+```
+
+e.  
+
+When controlling for the number of observation hours, we have ample evidence that the rate of eagle sightings has increased over time. 
+
+## 9
+
+a.  
+
+The model is fair? I don’t believe that there is bias in the data collection process.
+
+b.  
+
+```{r}
+pp_check(bald_eagles_model3)
+```
+
+Our pp_check() shows that our assumptions are reasonable. Our model is not very "wrong."
+
+c.  
+
+```{r}
+prediction_summary(model = bald_eagles_model3, data = bald_eagles)
+```
+
+Our model is pretty accurate given the scaled mae above.

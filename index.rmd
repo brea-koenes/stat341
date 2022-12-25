@@ -23,6 +23,10 @@ output:
 
     -   ready to go
 
--   [Ch 11-12](ch11-11.html)
+-   [Ch 11](ch11.html)
+
+    -   ready to go
+    
+-   [Ch 12](ch12.html)
 
     -   ready to go

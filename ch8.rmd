@@ -330,8 +330,8 @@ d.
 ```{r}
 loon_chains_df <- as.data.frame(loon_sim, pars = "lp__", include = FALSE)
 
-loon_chains_df %>% 
-  mutate(exceeds = lambda < 1) %>% 
+loon_chains_df |> 
+  mutate(exceeds = lambda < 1) |> 
   tabyl(exceeds)
 ```
 
@@ -346,10 +346,10 @@ a.
 ```{r}
 set.seed(1)
 
-loon_chains_df <- loon_chains_df %>% 
+loon_chains_df <- loon_chains_df |> 
   mutate(y_predict = rgamma(shape = 2, length(lambda)))
 
-loon_chains_df %>% 
+loon_chains_df |> 
   head(3)
 ```
 
@@ -361,7 +361,7 @@ ggplot(loon_chains_df, aes(x = y_predict)) +
 b.  
 
 ```{r}
-loon_chains_df %>% 
+loon_chains_df |> 
   summarize(mean = mean(y_predict),
             lower_80 = quantile(y_predict, 0.1),
             upper_80 = quantile(y_predict, 0.9))
@@ -372,8 +372,8 @@ c.
 ```{r}
 loon_chains_df <- as.data.frame(loon_sim, pars = "lp__", include = FALSE)
 
-loon_chains_df %>% 
-  mutate(zero = lambda == 0) %>% 
+loon_chains_df |> 
+  mutate(zero = lambda == 0) |> 
   tabyl(zero)
 ```
 

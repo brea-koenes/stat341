@@ -1,0 +1,197 @@
+---
+title: "ch12.rmd"
+author: "Brea Koenes"
+date: "12/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(bayesrules)
+library(rstanarm)
+library(bayesplot)
+library(tidyverse)
+library(broom.mixed)
+library(tidybayes)
+```
+
+# Chapter 12
+
+## 5
+
+a.  
+
+```{r}
+summary(bald_eagles)
+```
+
+```{r}
+require(ggformula)
+gf_histogram(~count, data = bald_eagles)
+```
+
+b.  
+
+```{r}
+gf_point(count~year, data = bald_eagles)
+```
+
+Count increases with year
+
+c.  
+
+```{r}
+gf_point(count~year, data = bald_eagles, color = bald_eagles$hours)
+```
+
+Hours looks associated positively with count over the years.
+
+## 6
+
+a.  
+
+```{r}
+bald_eagles_model <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+prior_summary(bald_eagles_model)
+```
+
+b.  
+
+\$\$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2,\sigma \\
+\tilde \\ \\ 
+N(\mu_i, \sigma^2) 
+\\ with  \\
+\mu_i = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} \$\$
+
+c.  
+
+```{r}
+pp_check(bald_eagles_model)
+```
+
+Our pp_check() shows that our Poisson regression assumptions are reasonable. The model is not very "wrong."
+
+## 7
+
+a.  
+
+Poisson is more appropriate because it works with discrete data that can only be equal to or greater than zero. Our data is integers that are greater than or equal to 0.
+
+b.  
+
+```{r}
+bald_eagles_model2 <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+prior_summary(bald_eagles_model2)
+```
+
+c.  
+
+\$\$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2 \\
+\tilde \\ \\ 
+Pois(\lambda_i) 
+\\ with  \\
+\log(\lambda_i) = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} \$\$
+
+d.  
+
+```{r}
+pp_check(bald_eagles_model2)
+```
+
+The model is "good" and its assumptions are inappropriate for the bald eagle analysis.
+
+## 8
+
+a.  
+
+```{r}
+bald_eagles_model3 <- stan_glm(count ~ year + hours, 
+                                 data = bald_eagles, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 prior_aux = exponential(1, autoscale = TRUE),
+                                 chains = 4, iter = 5000*2, seed = 84735)
+```
+
+```{r}
+pp_check(bald_eagles_model3)
+```
+
+b.  
+
+\$\$ \begin{align*}
+
+data: \\
+Y_i | \beta_0,\beta_1,\beta_2,r \\
+\tilde \\ \\ 
+NegBin(\mu_i,r) 
+\\ with  \\
+\log(\mu_i) = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2}  \\
+
+\end{align*} \$\$
+
+c.  
+
+```{r}
+tidy(bald_eagles_model3, conf.int = TRUE, conf.level = 0.80)
+```
+
+The posterior median of year is 0.073. The posterior median of hours is 0.011. Year is more significant than hours.
+
+d.  
+
+```{r}
+tidy(bald_eagles_model3, conf.int = TRUE, conf.level = 0.95)
+```
+
+e.  
+
+When controlling for the number of observation hours, we have ample evidence that the rate of eagle sightings has increased over time.
+
+## 9
+
+a.  
+
+The model is fair? I don't believe that there is bias in the data collection process.
+
+b.  
+
+```{r}
+pp_check(bald_eagles_model3)
+```
+
+Our pp_check() shows that our assumptions are reasonable. Our model is not very "wrong."
+
+c.  
+
+```{r}
+prediction_summary(model = bald_eagles_model3, data = bald_eagles)
+```
+
+Our model is pretty accurate given the scaled mae above.

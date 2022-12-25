@@ -509,29 +509,7 @@ sim &lt;- stan(model_code = climate_model,
              chains = 4, 
              iter = 5000*2, 
              seed = 84735)</code></pre>
-<pre><code>## Trying to compile a simple C file</code></pre>
-<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
-## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
-##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
-##  namespace Eigen {
-##  ^~~~~~~~~
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
-##  namespace Eigen {
-##                  ^
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
-##  #include &lt;complex&gt;
-##           ^~~~~~~~~
-## compilation terminated.
-## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
-## make: *** [foo.o] Error 1
-## 
+<pre><code>## 
 ## SAMPLING FOR MODEL &#39;e2b6daab2bb6e3cfdd961da3f3fbe03f&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 9e-06 seconds
@@ -552,9 +530,9 @@ sim &lt;- stan(model_code = climate_model,
 ## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 9.71198 seconds (Warm-up)
-## Chain 1:                9.58707 seconds (Sampling)
-## Chain 1:                19.299 seconds (Total)
+## Chain 1:  Elapsed Time: 9.53231 seconds (Warm-up)
+## Chain 1:                9.5991 seconds (Sampling)
+## Chain 1:                19.1314 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;e2b6daab2bb6e3cfdd961da3f3fbe03f&#39; NOW (CHAIN 2).
@@ -577,9 +555,9 @@ sim &lt;- stan(model_code = climate_model,
 ## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 9.43039 seconds (Warm-up)
-## Chain 2:                9.92518 seconds (Sampling)
-## Chain 2:                19.3556 seconds (Total)
+## Chain 2:  Elapsed Time: 9.28851 seconds (Warm-up)
+## Chain 2:                9.92614 seconds (Sampling)
+## Chain 2:                19.2147 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;e2b6daab2bb6e3cfdd961da3f3fbe03f&#39; NOW (CHAIN 3).
@@ -602,9 +580,9 @@ sim &lt;- stan(model_code = climate_model,
 ## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 9.54615 seconds (Warm-up)
-## Chain 3:                9.5254 seconds (Sampling)
-## Chain 3:                19.0716 seconds (Total)
+## Chain 3:  Elapsed Time: 9.35066 seconds (Warm-up)
+## Chain 3:                9.32834 seconds (Sampling)
+## Chain 3:                18.679 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;e2b6daab2bb6e3cfdd961da3f3fbe03f&#39; NOW (CHAIN 4).
@@ -627,9 +605,9 @@ sim &lt;- stan(model_code = climate_model,
 ## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 9.09687 seconds (Warm-up)
-## Chain 4:                11.0977 seconds (Sampling)
-## Chain 4:                20.1945 seconds (Total)
+## Chain 4:  Elapsed Time: 8.89067 seconds (Warm-up)
+## Chain 4:                10.7106 seconds (Sampling)
+## Chain 4:                19.6013 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -906,29 +884,7 @@ loon_model &lt;- &quot;
 # Simulate the posterior
 loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nrow(loons)), 
                chains = 4, iter = (5000*2), seed = 84735)</code></pre>
-<pre><code>## Trying to compile a simple C file</code></pre>
-<pre><code>## Running /usr/lib/R/bin/R CMD SHLIB foo.c
-## gcc -std=gnu99 -I&quot;/usr/share/R/include&quot; -DNDEBUG   -I&quot;/usr/local/lib/R/site-library/Rcpp/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppEigen/include/unsupported&quot;  -I&quot;/usr/local/lib/R/site-library/BH/include&quot; -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/src/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/&quot;  -I&quot;/usr/local/lib/R/site-library/RcppParallel/include/&quot;  -I&quot;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/rstan/include&quot; -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DBOOST_NO_AUTO_PTR  -include &#39;/home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp&#39;  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1      -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-vB4ZXq/r-base-4.1.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c foo.c -o foo.o
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:88:0,
-##                  from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
-##  namespace Eigen {
-##  ^~~~~~~~~
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
-##  namespace Eigen {
-##                  ^
-## In file included from /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Dense:1:0,
-##                  from /home/bjk47/R/x86_64-pc-linux-gnu-library/4.1/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:13,
-##                  from &lt;command-line&gt;:0:
-## /usr/local/lib/R/site-library/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
-##  #include &lt;complex&gt;
-##           ^~~~~~~~~
-## compilation terminated.
-## /usr/lib/R/etc/Makeconf:168: recipe for target &#39;foo.o&#39; failed
-## make: *** [foo.o] Error 1
-## 
+<pre><code>## 
 ## SAMPLING FOR MODEL &#39;682025eded8672947f4795aef8466775&#39; NOW (CHAIN 1).
 ## Chain 1: 
 ## Chain 1: Gradient evaluation took 1e-05 seconds
@@ -949,15 +905,15 @@ loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nr
 ## Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 10.1448 seconds (Warm-up)
-## Chain 1:                10.1426 seconds (Sampling)
-## Chain 1:                20.2874 seconds (Total)
+## Chain 1:  Elapsed Time: 10.1619 seconds (Warm-up)
+## Chain 1:                10.1541 seconds (Sampling)
+## Chain 1:                20.3159 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;682025eded8672947f4795aef8466775&#39; NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 5e-06 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+## Chain 2: Gradient evaluation took 4e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -974,15 +930,15 @@ loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nr
 ## Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 9.93534 seconds (Warm-up)
-## Chain 2:                10.3534 seconds (Sampling)
-## Chain 2:                20.2888 seconds (Total)
+## Chain 2:  Elapsed Time: 9.9255 seconds (Warm-up)
+## Chain 2:                10.3795 seconds (Sampling)
+## Chain 2:                20.305 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;682025eded8672947f4795aef8466775&#39; NOW (CHAIN 3).
 ## Chain 3: 
-## Chain 3: Gradient evaluation took 3e-06 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+## Chain 3: Gradient evaluation took 4e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 ## Chain 3: Adjust your expectations accordingly!
 ## Chain 3: 
 ## Chain 3: 
@@ -999,9 +955,9 @@ loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nr
 ## Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 9.91851 seconds (Warm-up)
-## Chain 3:                9.90699 seconds (Sampling)
-## Chain 3:                19.8255 seconds (Total)
+## Chain 3:  Elapsed Time: 9.89337 seconds (Warm-up)
+## Chain 3:                9.93436 seconds (Sampling)
+## Chain 3:                19.8277 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;682025eded8672947f4795aef8466775&#39; NOW (CHAIN 4).
@@ -1024,9 +980,9 @@ loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nr
 ## Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 9.89763 seconds (Warm-up)
-## Chain 4:                10.9702 seconds (Sampling)
-## Chain 4:                20.8679 seconds (Total)
+## Chain 4:  Elapsed Time: 9.90811 seconds (Warm-up)
+## Chain 4:                10.7723 seconds (Sampling)
+## Chain 4:                20.6804 seconds (Total)
 ## Chain 4:</code></pre>
 <pre><code>## Warning: There were 20000 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
 ## https://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</code></pre>
@@ -1057,8 +1013,8 @@ loon_sim &lt;- stan(model_code = loon_model, data = list(Y = loons$count, n = nr
 </ol>
 <pre class="r"><code>loon_chains_df &lt;- as.data.frame(loon_sim, pars = &quot;lp__&quot;, include = FALSE)
 
-loon_chains_df %&gt;% 
-  mutate(exceeds = lambda &lt; 1) %&gt;% 
+loon_chains_df |&gt; 
+  mutate(exceeds = lambda &lt; 1) |&gt; 
   tabyl(exceeds)</code></pre>
 <pre><code>##  exceeds     n percent
 ##    FALSE 20000       1</code></pre>
@@ -1077,10 +1033,10 @@ causing some variation as well.</p>
 </ol>
 <pre class="r"><code>set.seed(1)
 
-loon_chains_df &lt;- loon_chains_df %&gt;% 
+loon_chains_df &lt;- loon_chains_df |&gt; 
   mutate(y_predict = rgamma(shape = 2, length(lambda)))
 
-loon_chains_df %&gt;% 
+loon_chains_df |&gt; 
   head(3)</code></pre>
 <pre><code>##     lambda y_predict
 ## 1 3.539372  0.830865
@@ -1092,7 +1048,7 @@ loon_chains_df %&gt;%
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<pre class="r"><code>loon_chains_df %&gt;% 
+<pre class="r"><code>loon_chains_df |&gt; 
   summarize(mean = mean(y_predict),
             lower_80 = quantile(y_predict, 0.1),
             upper_80 = quantile(y_predict, 0.9))</code></pre>
@@ -1103,8 +1059,8 @@ loon_chains_df %&gt;%
 </ol>
 <pre class="r"><code>loon_chains_df &lt;- as.data.frame(loon_sim, pars = &quot;lp__&quot;, include = FALSE)
 
-loon_chains_df %&gt;% 
-  mutate(zero = lambda == 0) %&gt;% 
+loon_chains_df |&gt; 
+  mutate(zero = lambda == 0) |&gt; 
   tabyl(zero)</code></pre>
 <pre><code>##   zero     n percent
 ##  FALSE 20000       1</code></pre>
