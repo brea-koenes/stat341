@@ -50,12 +50,17 @@ Hours looks associated positively with count over the years.
 a.  
 
 ```{r}
-bald_eagles_model <- stan_glm(count ~ year + hours, 
-                                 data = bald_eagles, 
-                                 family = poisson,
-                                 prior_intercept = normal(2, 0.5),
-                                 prior = normal(2.8, 2, autoscale = TRUE), 
-                                 chains = 4, iter = 5000*2, seed = 84735)
+summary(bald_eagles)
+```
+
+```{r}
+bald_eagles_model <- stan_glm(count ~ year + hours,
+                       data = bald_eagles,
+                       family = gaussian,
+                       prior_intercept = normal(4, 2),
+                       prior = normal(2, 0.5), 
+                       prior_aux = exponential(0.0008),
+                       chains = 4, iter = 5000*2, seed = 84735)
 ```
 
 ```{r}
@@ -81,7 +86,7 @@ c.
 pp_check(bald_eagles_model)
 ```
 
-Our pp_check() shows that our Poisson regression assumptions are reasonable. The model is not very "wrong."
+Our pp_check() shows that our regression assumptions are reasonable. The dark blue line roughly follows the paths of the light blue lines. The model is not very "wrong."
 
 ## 7
 
@@ -95,8 +100,8 @@ b.
 bald_eagles_model2 <- stan_glm(count ~ year + hours, 
                                  data = bald_eagles, 
                                  family = poisson,
-                                 prior_intercept = normal(2, 0.5),
-                                 prior = normal(2.8, 2, autoscale = TRUE), 
+                                 prior_intercept = normal(4, 2),
+                                 prior = normal(2, 0.5),
                                  chains = 4, iter = 5000*2, seed = 84735)
 ```
 
@@ -123,7 +128,7 @@ d.
 pp_check(bald_eagles_model2)
 ```
 
-The model is "good" and its assumptions are inappropriate for the bald eagle analysis.
+The model is "good" and its assumptions are appropriate for the bald eagle analysis.
 
 ## 8
 
@@ -131,17 +136,19 @@ a.
 
 ```{r}
 bald_eagles_model3 <- stan_glm(count ~ year + hours, 
-                                 data = bald_eagles, 
-                                 family = poisson,
-                                 prior_intercept = normal(2, 0.5),
-                                 prior = normal(2.8, 2, autoscale = TRUE), 
-                                 prior_aux = exponential(1, autoscale = TRUE),
-                                 chains = 4, iter = 5000*2, seed = 84735)
+                               data = bald_eagles, 
+                               family = neg_binomial_2,
+                               prior_intercept = normal(4, 2),
+                               prior = normal(2, 0.5),
+                               prior_aux = exponential(1, autoscale = TRUE),
+                               chains = 4, iter = 5000*2, seed = 84735)
 ```
 
 ```{r}
 pp_check(bald_eagles_model3)
 ```
+
+The model is "good" and its assumptions are appropriate.
 
 b.  
 
@@ -162,7 +169,7 @@ c.
 tidy(bald_eagles_model3, conf.int = TRUE, conf.level = 0.80)
 ```
 
-The posterior median of year is 0.073. The posterior median of hours is 0.011. Year is more significant than hours.
+The posterior median of year is 7.87. The posterior median of hours is 4.59. Year is more significant than hours.
 
 d.  
 
